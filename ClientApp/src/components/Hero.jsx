@@ -34,7 +34,7 @@ function Hero({ personalData }) {
         <div className="hero-right">
           <div className="hero-image-wrapper">
             <div className="hero-radial-bg"></div>
-            <img src="/assets/wedding.JPG" alt={personalData.name} className="hero-image" />
+            <div className="hero-image-placeholder">ÞHB</div>
           </div>
         </div>
       </div>

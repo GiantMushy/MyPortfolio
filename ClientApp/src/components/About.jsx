@@ -71,7 +71,7 @@ function About({ personalData, education, employment }) {
 
           <div className="about-right">
             <div className="about-image-wrapper">
-              <img src="/assets/Þorvarðar.png" alt={personalData.name} className="about-image" />
+              <div className="about-image-placeholder">ÞHB</div>
             </div>
 
             <div className="skills-grid">
