@@ -12,8 +12,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir,
-    emptyOutDir: true,
-  },
+    emptyOutDir: true,    assetsDir: 'assets',  },
   server: {
     port: 5173,
     proxy: {

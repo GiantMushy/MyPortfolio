@@ -6,7 +6,13 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -19,6 +25,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: ClientApp/package-lock.json
 
       - name: Install dependencies
         run: |
@@ -34,9 +42,19 @@ jobs:
           cd ClientApp
           # set VITE_BASE so vite builds with the correct base path for project pages
           VITE_BASE="/$repo_name/" npm run build
+          
+      - name: Copy CNAME to dist
+        run: |
+          if [ -f CNAME ]; then
+            cp CNAME ClientApp/dist/
+            echo "CNAME file copied to dist"
+          else
+            echo "No CNAME file found"
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./ClientApp/dist
+          cname: giantmushy.portfolio.com

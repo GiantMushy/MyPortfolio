@@ -8,29 +8,61 @@ function App() {
   const [personalData, setPersonalData] = useState(null)
   const [education, setEducation] = useState([])
   const [employment, setEmployment] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    // Fetch personal data
-    fetch('/json/personal.json')
-      .then(res => res.json())
-      .then(data => setPersonalData(data[0]))
-      .catch(err => console.error('Error loading personal data:', err))
+    // Get base path for GitHub Pages deployment
+    const basePath = import.meta.env.BASE_URL || '/'
+    console.log('Base path for assets:', basePath)
+    console.log('Current URL:', window.location.href)
+    
+    const fetchData = async () => {
+      try {
+        // Fetch all data concurrently
+        const [personalRes, educationRes, employmentRes] = await Promise.all([
+          fetch(`${basePath}json/personal.json`),
+          fetch(`${basePath}json/education.json`),
+          fetch(`${basePath}json/employment.json`)
+        ])
 
-    // Fetch education data
-    fetch('/json/education.json')
-      .then(res => res.json())
-      .then(data => setEducation(data))
-      .catch(err => console.error('Error loading education data:', err))
+        // Check if all requests succeeded
+        if (!personalRes.ok) throw new Error(`Personal data fetch failed: ${personalRes.status}`)
+        if (!educationRes.ok) throw new Error(`Education data fetch failed: ${educationRes.status}`)
+        if (!employmentRes.ok) throw new Error(`Employment data fetch failed: ${employmentRes.status}`)
 
-    // Fetch employment data
-    fetch('/json/employment.json')
-      .then(res => res.json())
-      .then(data => setEmployment(data))
-      .catch(err => console.error('Error loading employment data:', err))
+        // Parse all JSON data
+        const [personalData, educationData, employmentData] = await Promise.all([
+          personalRes.json(),
+          educationRes.json(),
+          employmentRes.json()
+        ])
+
+        // Set all state
+        setPersonalData(personalData[0])
+        setEducation(educationData)
+        setEmployment(employmentData)
+      } catch (err) {
+        console.error('Error loading portfolio data:', err)
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
   }, [])
 
+  if (loading) {
+    return <div className="loading">Loading portfolio data...</div>
+  }
+
+  if (error) {
+    return <div className="error">Error loading portfolio: {error}</div>
+  }
+
   if (!personalData) {
-    return <div className="loading">Loading...</div>
+    return <div className="error">No personal data available. Check console for fetch errors.</div>
   }
 
   return (
