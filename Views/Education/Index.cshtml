@@ -1,0 +1,37 @@
+@model IEnumerable<MyPortfolio.Models.Education>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <h1>Education</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Degree</th>
+                <th>Institution</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var education in Model)
+            {
+                <tr>
+                    <td>@education.Degree</td>
+                    <td>@education.Institution</td>
+                    <td>@education.StartDate</td>
+                    <td>@education.EndDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

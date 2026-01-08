@@ -1,0 +1,102 @@
+/* Moved from Views/Shared/_Layout.cshtml.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: inherit; /* inherit global text color */
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+/* Global layout and reset */
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #DDE6ED; /* Global background */
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400; /* ensure regular weight */
+  font-synthesis: none; /* prevent faux bold/italic */
+  color: #27374D;
+}
+
+/* New layout sections */
+.site-header {
+  background-color: #9DB2BF;
+  padding: 12px 24px; /* horizontal padding */
+  width: 100%;
+}
+.header-inner { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+.site-header .brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.site-header .nav-tabs .tab {
+  margin-left: 16px;
+  text-decoration: none;
+}
+.site-header .nav-tabs .tab:hover {
+  text-decoration: underline;
+}
+
+.site-body {
+  flex: 1;
+  padding: 24px;
+}
+.body-inner h2 { margin-top: 0; }
+
+.site-footer {
+  background-color: #9DB2BF;
+  width: 100%;
+  margin-top: auto; /* sticky footer in flex column */
+}
+.footer-inner { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  min-height: 60px; 
+  padding: 12px 24px; 
+}

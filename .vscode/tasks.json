@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run .NET application",
+			"type": "shell",
+			"command": "dotnet run",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run .NET application",
+			"type": "shell",
+			"command": "dotnet run",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run .NET application",
+			"type": "shell",
+			"command": "dotnet run",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run .NET application",
+			"type": "shell",
+			"command": "dotnet run",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run .NET application",
+			"type": "shell",
+			"command": "dotnet run",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
