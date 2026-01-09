@@ -72,8 +72,6 @@ jobs:
             
             sleep 2
           done
-            sleep 1
-          done
           
           if [ "$READY" = false ]; then
             echo "❌ Application failed to start within 3 minutes. Checking logs:"
