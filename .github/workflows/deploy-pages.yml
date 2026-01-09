@@ -40,77 +40,90 @@ jobs:
           # Copy static assets from wwwroot first
           cp -R wwwroot/* dist/
           
-          # Create a production launch settings for consistent port
-          mkdir -p Properties
-          cat > Properties/launchSettings.production.json << 'EOF'
-          {
-            "profiles": {
-              "production": {
-                "commandName": "Project",
-                "dotnetRunMessages": false,
-                "launchBrowser": false,
-                "applicationUrl": "http://localhost:5000",
-                "environmentVariables": {
-                  "ASPNETCORE_ENVIRONMENT": "Production"
-                }
-              }
-            }
-          }
-          EOF
-          
           # Set environment variables for production
           export ASPNETCORE_ENVIRONMENT=Production
           export ASPNETCORE_URLS="http://localhost:5000"
-          export ASPNETCORE_LOGGING__LOGLEVEL__DEFAULT=Error
+          export ASPNETCORE_LOGGING__LOGLEVEL__DEFAULT=Warning
           
-          # Start the application in background with production settings
-          echo "Starting ASP.NET Core application..."
-          dotnet run --configuration Release --no-build --launch-profile production > app.log 2>&1 &
+          # Start the application in background
+          echo "🚀 Starting ASP.NET Core application..."
+          dotnet run --configuration Release --no-build > app.log 2>&1 &
           APP_PID=$!
           
+          echo "📋 Application PID: $APP_PID"
+          
           # Wait for app to start with better error handling
-          echo "Waiting for application to start..."
+          echo "⏳ Waiting for application to start..."
           READY=false
-          for i in {1..60}; do
+          for i in {1..90}; do
             if curl -f -s http://localhost:5000/ > /dev/null 2>&1; then
               echo "✅ Application is ready on port 5000!"
               READY=true
               break
             fi
-            echo "⏳ Attempt $i/60: Waiting for app..."
+            echo "⏳ Attempt $i/90: Waiting for app..."
+            
+            # Check if process is still running
+            if ! kill -0 $APP_PID 2>/dev/null; then
+              echo "❌ Application process died. Checking logs:"
+              cat app.log
+              exit 1
+            fi
+            
+            sleep 2
+          done
             sleep 1
           done
           
           if [ "$READY" = false ]; then
-            echo "❌ Application failed to start. Checking logs:"
+            echo "❌ Application failed to start within 3 minutes. Checking logs:"
             cat app.log
-            ps aux | grep dotnet
+            echo "🔍 Process status:"
+            ps aux | grep dotnet || echo "No dotnet processes found"
+            echo "🌐 Network status:"
+            netstat -tlnp | grep 5000 || echo "Port 5000 not in use"
             exit 1
           fi
+          
+          # Test the application response
+          echo "🧪 Testing application response..."
+          RESPONSE=$(curl -s -w "HTTP_CODE:%{http_code}" http://localhost:5000/)
+          echo "Response: $RESPONSE"
           
           # Generate static HTML files
           echo "🔄 Generating static pages..."
           
-          # Generate home page
+          # Generate home page with detailed logging
+          echo "📄 Generating home page..."
           if curl -f -s -o dist/index.html http://localhost:5000/; then
-            echo "✅ Generated index.html"
+            echo "✅ Generated index.html ($(wc -c < dist/index.html) bytes)"
+            echo "🔍 Preview of generated index.html:"
+            head -20 dist/index.html
           else
-            echo "❌ Failed to generate index.html"
-            echo "Using fallback wwwroot/index.html"
+            echo "❌ Failed to generate index.html from ASP.NET app"
+            echo "📋 Using fallback wwwroot/index.html"
+            echo "🔍 Current dist/index.html content:"
+            head -10 dist/index.html
           fi
           
           # Generate education page
+          echo "📄 Generating education page..."
           if curl -f -s -o dist/education.html http://localhost:5000/Education; then
-            echo "✅ Generated education.html"
+            echo "✅ Generated education.html ($(wc -c < dist/education.html) bytes)"
           else
             echo "⚠️  Education page not available"
+            echo "🔍 Testing Education endpoint:"
+            curl -v http://localhost:5000/Education || echo "Education endpoint failed"
           fi
           
           # Generate test page
+          echo "📄 Generating test page..."
           if curl -f -s -o dist/test.html http://localhost:5000/Test; then
-            echo "✅ Generated test.html"
+            echo "✅ Generated test.html ($(wc -c < dist/test.html) bytes)"
           else
             echo "⚠️  Test page not available"
+            echo "🔍 Testing Test endpoint:"
+            curl -v http://localhost:5000/Test || echo "Test endpoint failed"
           fi
           
           # Fix paths for GitHub Pages subdirectory deployment
