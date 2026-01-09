@@ -20,7 +20,6 @@ C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\rjimswa.dswa.cac
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\scopedcss\bundle\MyPortfolio.styles.css
-C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\myxtlnkzhk-{0}-bajieujdk9-bajieujdk9.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\suomyytl0y-{0}-46uevk1cs2-46uevk1cs2.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\zmpxzycrzd-{0}-kacodk91qi-kacodk91qi.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\9eqxphtovs-{0}-beqi8jshm6-beqi8jshm6.gz
@@ -36,4 +35,8 @@ C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\MyPortfolio.pdb
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\MyPortfolio.genruntimeconfig.cache
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\ref\MyPortfolio.dll
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\mcki8o86hd-{0}-akzwyuhsxu-akzwyuhsxu.gz
-C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\laik32afsc-{0}-858x77delj-858x77delj.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\myxtlnkzhk-{0}-47tf17dede-47tf17dede.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\natb5s0jon-{0}-bzunyga93r-bzunyga93r.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\peghtvduvd-{0}-4ipuyylr2l-4ipuyylr2l.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\wwav345sf4-{0}-4febymwn0b-4febymwn0b.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\laik32afsc-{0}-kxq7y7syfb-kxq7y7syfb.gz

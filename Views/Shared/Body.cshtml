@@ -1,7 +1,116 @@
 @* Body partial *@
+<link rel="stylesheet" href="/css/body.css" />
 <div class="site-body">
     <div class="body-inner">
-        <h2>Welcome! I'm Thor</h2>
+        <section class="hero">
+            <div class="hero-text">
+                <div class="hero-title">
+                    <h1 class="hero-greeting">Welcome! I'm </h1>
+                    <div class="hero-name-wrapper">
+                        <span class="hero-name" tabindex="0">Thor</span>
+                        <div class="name-popover" role="tooltip" aria-live="polite">
+                            @await Html.PartialAsync("_FullName")
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="hero-subtitle">an aspiring developer</h1>
+                <p class="hero-caption">Currently finishing my bachelor's in Computer Science in Reykjavik University</p>
+
+                <div class="hero-actions">
+                    <button type="button" class="btn-primary btn-rainbow">My Journey</button>
+                </div>
+            </div>
+
+            <div class="hero-portrait">
+                <img class="hero-profile" src="@Url.Content("~/images/profile.png")" alt="Profile picture of Thor" />
+            </div>
+        </section>
+        
+        <section class="skills">
+            <h1>Learned Skills</h1>
+            <div class="skills-list">
+                <details class="skill" id="skill-unity">
+                    <summary class="skill-bar">
+                        <div class="skill-left">
+                            <span class="skill-icon">
+                                <img class="skill-logo skill-logo-default" src="@Url.Content("~/images/unity.png")" alt="Unity logo" />
+                                <img class="skill-logo skill-logo-selected" src="@Url.Content("~/images/unity-selected.png")" alt="Unity logo selected" />
+                            </span>
+                            <h1 class="skill-title">Unity</h1>
+                        </div>
+                        <span class="skill-arrow" aria-hidden="true"></span>
+                    </summary>
+                    <div class="skill-content">
+                        <!-- Unity details to be filled later -->
+                    </div>
+                </details>
+
+                <details class="skill" id="skill-python">
+                    <summary class="skill-bar">
+                        <div class="skill-left">
+                            <span class="skill-icon">
+                                <img class="skill-logo skill-logo-default" src="@Url.Content("~/images/python.png")" alt="Python logo" />
+                                <img class="skill-logo skill-logo-selected" src="@Url.Content("~/images/python-selected.png")" alt="Python logo selected" />
+                            </span>
+                            <h1 class="skill-title">Python</h1>
+                        </div>
+                        <span class="skill-arrow" aria-hidden="true"></span>
+                    </summary>
+                    <div class="skill-content">
+                        <!-- Python details to be filled later -->
+                    </div>
+                </details>
+
+                <details class="skill" id="skill-web">
+                    <summary class="skill-bar">
+                        <div class="skill-left">
+                            <span class="skill-icon">
+                                <img class="skill-logo skill-logo-default" src="@Url.Content("~/images/web.png")" alt="Web logo" />
+                                <img class="skill-logo skill-logo-selected" src="@Url.Content("~/images/web-selected.png")" alt="Web logo selected" />
+                            </span>
+                            <h1 class="skill-title">Web</h1>
+                        </div>
+                        <span class="skill-arrow" aria-hidden="true"></span>
+                    </summary>
+                    <div class="skill-content">
+                        <!-- Web details to be filled later -->
+                    </div>
+                </details>
+
+                <details class="skill" id="skill-teaching">
+                    <summary class="skill-bar">
+                        <div class="skill-left">
+                            <span class="skill-icon">
+                                <img class="skill-logo skill-logo-default" src="@Url.Content("~/images/teaching.png")" alt="Teaching logo" />
+                                <img class="skill-logo skill-logo-selected" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching logo selected" />
+                            </span>
+                            <h1 class="skill-title">Teaching</h1>
+                        </div>
+                        <span class="skill-arrow" aria-hidden="true"></span>
+                    </summary>
+                    <div class="skill-content">
+                        <!-- Teaching details to be filled later -->
+                    </div>
+                </details>
+
+                <details class="skill" id="skill-woodworking">
+                    <summary class="skill-bar">
+                        <div class="skill-left">
+                            <span class="skill-icon">
+                                <img class="skill-logo skill-logo-default" src="@Url.Content("~/images/woodworking.png")" alt="Woodworking logo" />
+                                <img class="skill-logo skill-logo-selected" src="@Url.Content("~/images/woodworking-selected.png")" alt="Woodworking logo selected" />
+                            </span>
+                            <h1 class="skill-title">Woodworking</h1>
+                        </div>
+                        <span class="skill-arrow" aria-hidden="true"></span>
+                    </summary>
+                    <div class="skill-content">
+                        <!-- Woodworking details to be filled later -->
+                    </div>
+                </details>
+            </div>
+        </section>
     </div>
     
 </div>
