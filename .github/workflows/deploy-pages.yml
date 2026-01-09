@@ -21,11 +21,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare static site
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build and generate static site
         run: |
+          # Build the application
+          dotnet build --configuration Release --no-restore
+          
+          # Create output directory
           mkdir -p dist
+          
+          # Copy static assets from wwwroot
           cp -R wwwroot/* dist/
-          # include custom domain if present
+          
+          # Start the application in background and generate HTML
+          dotnet run --configuration Release &
+          APP_PID=$!
+          
+          # Wait for app to start
+          sleep 10
+          
+          # Generate static HTML files from the running app
+          curl -o dist/index.html http://localhost:5000/ || curl -o dist/index.html http://localhost:5173/
+          
+          # Generate other pages if they exist
+          curl -s -o dist/education.html http://localhost:5000/Education || curl -s -o dist/education.html http://localhost:5173/Education || true
+          
+          # Stop the application
+          kill $APP_PID || true
+          
+          # Include custom domain if present
           if [ -f CNAME ]; then cp CNAME dist/; fi
 
       - name: Upload artifact
