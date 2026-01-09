@@ -36,7 +36,8 @@ C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\MyPortfolio.genr
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\ref\MyPortfolio.dll
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\mcki8o86hd-{0}-akzwyuhsxu-akzwyuhsxu.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\myxtlnkzhk-{0}-47tf17dede-47tf17dede.gz
-C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\natb5s0jon-{0}-bzunyga93r-bzunyga93r.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\peghtvduvd-{0}-4ipuyylr2l-4ipuyylr2l.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\wwav345sf4-{0}-4febymwn0b-4febymwn0b.gz
-C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\laik32afsc-{0}-kxq7y7syfb-kxq7y7syfb.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\natb5s0jon-{0}-ydmm5adi6t-ydmm5adi6t.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\laik32afsc-{0}-3z3fo0gj0q-3z3fo0gj0q.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\vz8zucjgr4-{0}-0pzlf4czfd-0pzlf4czfd.gz

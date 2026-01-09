@@ -113,6 +113,16 @@ jobs:
             echo "⚠️  Test page not available"
           fi
           
+          # Fix paths for GitHub Pages subdirectory deployment
+          echo "🔧 Fixing asset paths for GitHub Pages..."
+          find dist -name "*.html" -type f -exec sed -i 's|="/css/|="css/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|="/js/|="js/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|="/images/|="images/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|="/json/|="json/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|href="/|href="./|g' {} \;
+          
+          echo "✅ Fixed asset paths to be relative"
+          
           # Stop the application gracefully
           echo "🛑 Stopping application..."
           kill -TERM $APP_PID 2>/dev/null || true
