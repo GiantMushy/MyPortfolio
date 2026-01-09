@@ -37,27 +37,105 @@ jobs:
           # Create output directory
           mkdir -p dist
           
-          # Copy static assets from wwwroot
+          # Copy static assets from wwwroot first
           cp -R wwwroot/* dist/
           
-          # Start the application in background and generate HTML
-          dotnet run --configuration Release &
+          # Create a production launch settings for consistent port
+          mkdir -p Properties
+          cat > Properties/launchSettings.production.json << 'EOF'
+          {
+            "profiles": {
+              "production": {
+                "commandName": "Project",
+                "dotnetRunMessages": false,
+                "launchBrowser": false,
+                "applicationUrl": "http://localhost:5000",
+                "environmentVariables": {
+                  "ASPNETCORE_ENVIRONMENT": "Production"
+                }
+              }
+            }
+          }
+          EOF
+          
+          # Set environment variables for production
+          export ASPNETCORE_ENVIRONMENT=Production
+          export ASPNETCORE_URLS="http://localhost:5000"
+          export ASPNETCORE_LOGGING__LOGLEVEL__DEFAULT=Error
+          
+          # Start the application in background with production settings
+          echo "Starting ASP.NET Core application..."
+          dotnet run --configuration Release --no-build --launch-profile production > app.log 2>&1 &
           APP_PID=$!
           
-          # Wait for app to start
-          sleep 10
+          # Wait for app to start with better error handling
+          echo "Waiting for application to start..."
+          READY=false
+          for i in {1..60}; do
+            if curl -f -s http://localhost:5000/ > /dev/null 2>&1; then
+              echo "✅ Application is ready on port 5000!"
+              READY=true
+              break
+            fi
+            echo "⏳ Attempt $i/60: Waiting for app..."
+            sleep 1
+          done
           
-          # Generate static HTML files from the running app
-          curl -o dist/index.html http://localhost:5000/ || curl -o dist/index.html http://localhost:5173/
+          if [ "$READY" = false ]; then
+            echo "❌ Application failed to start. Checking logs:"
+            cat app.log
+            ps aux | grep dotnet
+            exit 1
+          fi
           
-          # Generate other pages if they exist
-          curl -s -o dist/education.html http://localhost:5000/Education || curl -s -o dist/education.html http://localhost:5173/Education || true
+          # Generate static HTML files
+          echo "🔄 Generating static pages..."
           
-          # Stop the application
-          kill $APP_PID || true
+          # Generate home page
+          if curl -f -s -o dist/index.html http://localhost:5000/; then
+            echo "✅ Generated index.html"
+          else
+            echo "❌ Failed to generate index.html"
+            echo "Using fallback wwwroot/index.html"
+          fi
+          
+          # Generate education page
+          if curl -f -s -o dist/education.html http://localhost:5000/Education; then
+            echo "✅ Generated education.html"
+          else
+            echo "⚠️  Education page not available"
+          fi
+          
+          # Generate test page
+          if curl -f -s -o dist/test.html http://localhost:5000/Test; then
+            echo "✅ Generated test.html"
+          else
+            echo "⚠️  Test page not available"
+          fi
+          
+          # Stop the application gracefully
+          echo "🛑 Stopping application..."
+          kill -TERM $APP_PID 2>/dev/null || true
+          sleep 2
+          kill -KILL $APP_PID 2>/dev/null || true
           
           # Include custom domain if present
-          if [ -f CNAME ]; then cp CNAME dist/; fi
+          if [ -f CNAME ]; then 
+            cp CNAME dist/
+            echo "✅ Copied CNAME file"
+          fi
+          
+          echo "📁 Final dist directory contents:"
+          find dist -type f -exec ls -la {} \;
+          
+          echo "🔍 Checking generated HTML files:"
+          for file in dist/*.html; do
+            if [ -f "$file" ]; then
+              echo "📄 $file ($(wc -c < "$file") bytes):"
+              head -10 "$file"
+              echo "..."
+            fi
+          done
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
