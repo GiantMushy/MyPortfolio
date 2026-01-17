@@ -47,7 +47,7 @@ jobs:
           
           # Start the application in background
           echo "🚀 Starting ASP.NET Core application..."
-          dotnet run --configuration Release --no-build > app.log 2>&1 &
+          dotnet run --configuration Release --no-build --no-launch-profile > app.log 2>&1 &
           APP_PID=$!
           
           echo "📋 Application PID: $APP_PID"
