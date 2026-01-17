@@ -18,7 +18,7 @@
                 <p class="hero-caption">Currently finishing my bachelor's in Computer Science in Reykjavik University</p>
 
                 <div class="hero-actions">
-                    <button type="button" class="btn-primary btn-rainbow">My Journey</button>
+                    <a href="@Url.Action("MyJourney", "Home")" class="btn-primary btn-rainbow">My Journey</a>
                 </div>
             </div>
 
@@ -42,7 +42,11 @@
                         <span class="skill-arrow" aria-hidden="true"></span>
                     </summary>
                     <div class="skill-content">
-                        <!-- Unity details to be filled later -->
+                        @await Html.PartialAsync("_FellowPirates")
+                        <br>
+                        @await Html.PartialAsync("_CultOfTheJarls")
+                        <br>
+                        @await Html.PartialAsync("_Aseprite")
                     </div>
                 </details>
 
@@ -58,7 +62,15 @@
                         <span class="skill-arrow" aria-hidden="true"></span>
                     </summary>
                     <div class="skill-content">
-                        <!-- Python details to be filled later -->
+                        @* @await Html.PartialAsync("_Chess")
+                        <br>
+                        @await Html.PartialAsync("_Wordle")
+                        <br> *@
+                        @await Html.PartialAsync("_NanAir")
+                        <br>
+                        @await Html.PartialAsync("_CarGame2D")
+                        <br>
+                        @await Html.PartialAsync("_CarGame3D")
                     </div>
                 </details>
 
@@ -74,7 +86,9 @@
                         <span class="skill-arrow" aria-hidden="true"></span>
                     </summary>
                     <div class="skill-content">
-                        <!-- Web details to be filled later -->
+                        @await Html.PartialAsync("_Nestor")
+                        <br>
+                        @await Html.PartialAsync("_Kodi")
                     </div>
                 </details>
 
@@ -90,7 +104,14 @@
                         <span class="skill-arrow" aria-hidden="true"></span>
                     </summary>
                     <div class="skill-content">
-                        <!-- Teaching details to be filled later -->
+                        @await Html.PartialAsync("_Teaching")
+                        @* @await Html.PartialAsync("_TeachingGSKI")
+                        <br>
+                        @await Html.PartialAsync("_TeachingSTR1")
+                        <br>
+                        @await Html.PartialAsync("_TeachingVEFF")
+                        <br>
+                        @await Html.PartialAsync("_TeachingFMAL") *@
                     </div>
                 </details>
 
@@ -106,7 +127,7 @@
                         <span class="skill-arrow" aria-hidden="true"></span>
                     </summary>
                     <div class="skill-content">
-                        <!-- Woodworking details to be filled later -->
+                        @await Html.PartialAsync("_Woodworking")
                     </div>
                 </details>
             </div>
