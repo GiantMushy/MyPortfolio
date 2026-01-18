@@ -1,0 +1,58 @@
+/* Footer-specific styles */
+
+.site-footer {
+  background-color: #9DB2BF;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 24px;
+  align-items: start;
+  min-height: 60px;
+  padding: 16px 24px;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  margin-left: 50px;
+  gap: 12px;
+}
+
+.contact-columns {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 24px;
+  row-gap: 12px;
+  justify-content: start;
+  margin-bottom: 20px;
+}
+
+.footer-contact-data {
+  display: grid;
+  grid-template-columns: 20px auto;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+.footer-contact-data .icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+.thank-you-msg p {
+  max-width: 46ch;
+  margin: 0;
+}
+
+/* Stack on small screens */
+@media (max-width: 700px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .contact-columns { grid-template-columns: 1fr; column-gap: 0; }
+  .thank-you-msg { margin-left: 50px; }
+}

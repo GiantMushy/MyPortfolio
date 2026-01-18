@@ -38,6 +38,11 @@ C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\mcki8
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\myxtlnkzhk-{0}-47tf17dede-47tf17dede.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\peghtvduvd-{0}-4ipuyylr2l-4ipuyylr2l.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\wwav345sf4-{0}-4febymwn0b-4febymwn0b.gz
-C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\natb5s0jon-{0}-ydmm5adi6t-ydmm5adi6t.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\laik32afsc-{0}-3z3fo0gj0q-3z3fo0gj0q.gz
 C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\vz8zucjgr4-{0}-0pzlf4czfd-0pzlf4czfd.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\natb5s0jon-{0}-z7kqcefhnc-z7kqcefhnc.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\k92a2bryp7-{0}-un6206mub4-un6206mub4.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\obj\Debug\net10.0\compressed\o5jewj1m5w-{0}-vtogg7bb4n-vtogg7bb4n.gz
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\bin\Debug\net10.0\static-site\json\education.json
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\bin\Debug\net10.0\static-site\json\employment.json
+C:\Users\Notandi\Documents\GitHub\MyPortfolio\bin\Debug\net10.0\static-site\json\personal.json

@@ -30,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Home/MyJourney.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNeUpvdXJuZXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,16 +54,80 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEhlYWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/MyJourneyBody.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE15Sm91cm5leUJvZHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_Aseprite.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Bc2Vwcml0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_CarGame2D.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DYXJHYW1lMkQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_CarGame3D.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DYXJHYW1lM0QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_Chess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGVzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_CultOfTheJarls.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DdWx0T2ZUaGVKYXJscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_FellowPirates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GZWxsb3dQaXJhdGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_FullName.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GdWxsTmFtZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_Kodi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Lb2RpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_NanAir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYW5BaXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_Nestor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OZXN0b3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_Teaching.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_TeachingFMAL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGluZ0ZNQUwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_TeachingGSKI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGluZ0dTS0kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_TeachingSTR1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGluZ1NUUjEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_TeachingVEFF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGluZ1ZFRkYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Test/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFxJbmRleC5jc2h0bWw=
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_Woodworking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Xb29kd29ya2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/Shared/_Wordle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Xb3JkbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Notandi/Documents/GitHub/MyPortfolio/Views/_ViewImports.cshtml]

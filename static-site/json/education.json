@@ -1,0 +1,23 @@
+[
+  {
+    "institution": "Háskólinn í Reykjavík",
+    "startDate": "Aug 2023",
+    "endDate": "Maí 2026",
+    "degree": "Tölvunarfræði (núverandi nám)",
+    "skills": []
+  },
+  {
+    "institution": "Háskólinn í Reykjavík",
+    "startDate": "Aug 2019",
+    "endDate": "Okt 2020",
+    "degree": "Vélaverkfræði (óklárað)",
+    "skills": []
+  },
+  {
+    "institution": "Verzlunarskóli Íslands",
+    "startDate": "Aug 2015",
+    "endDate": "Maí 2018",
+    "degree": "Eðlisfræðibraut",
+    "skills": []
+  }
+]

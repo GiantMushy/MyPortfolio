@@ -1,0 +1,105 @@
+h3 {
+  font-size: 800;
+  font-weight: 500;
+  color: #27374D;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.fellow-pirates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.project-display-img {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.solo-image {
+    width: 80%;
+    margin: auto;
+    display: block;
+    margin-bottom: 40px;
+}
+
+.solo-txt {
+    width: 75%;
+    margin: auto;
+    display: block;
+    margin-bottom: 40px;
+}
+
+.carGame2d-images-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    position: relative;
+    height: 100%;
+}
+
+.carGame2d-images-display img:nth-child(1) {
+    /* Menu - top left, 60% width */
+    grid-column: 1;
+    grid-row: 1;
+    width: 110%;
+    align-self: start;
+    justify-self: start;
+}
+
+.carGame2d-images-display img:nth-child(2) {
+    /* Level select - bottom right, 60% width, overlapping */
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    width: 60%;
+    align-self: end;
+    justify-self: end;
+    margin-top: -50px;
+}
+
+.carGame2d-images-display img:nth-child(3) {
+    /* Pygame logo - top right, small */
+    grid-column: 2;
+    grid-row: 1;
+    width: 30%;
+    align-self: start;
+    justify-self: end;
+    border: none;
+}
+
+.carGame2d-images-display img:nth-child(4) {
+    /* OpenGL logo - top right, small */
+    grid-column: 2;
+    grid-row: 1;
+    width: 40%;
+    align-self: center;
+    justify-self: center;
+    margin-top: 50px;
+    border: none;
+}
+#nestor-logo-and-text {
+    margin-top: 10%;
+    height: 100%;
+}
+.nestor-logo {
+    margin-top: 10%;
+    border: none;
+    width: 50%;
+}
+#project-kodi {
+    grid-template-columns: 1fr 3fr;
+}
+p {
+    margin: 0;
+    font-size: small;
+}

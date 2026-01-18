@@ -1,0 +1,138 @@
+/* Moved from Views/Shared/_Layout.cshtml.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+p { 
+    margin: 5px;
+}
+a {
+  color: inherit; /* inherit global text color */
+}
+h2 { 
+    font-weight: 400;
+}
+h1 {
+    font-weight: 400;
+}
+.btn-primary {
+    /* Palette */
+    --btn-bg: #27374D;
+    --btn-bg-top: #2b3f57;
+    --btn-bg-hover-top: #334964;
+    --btn-bg-hover-bottom: #2b3f57;
+    --btn-bg-active-top: #243347;
+    --btn-bg-active-bottom: #1f2d3e;
+    --btn-border: #526D82;
+    --btn-text: #DDE6ED;
+    --btn-shadow: 0 6px 14px rgba(39,55,77,0.25);
+    --btn-shadow-hover: 0 8px 18px rgba(39,55,77,0.35);
+    --btn-shadow-active: 0 3px 8px rgba(39,55,77,0.25);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 14px 28px;
+    border-radius: 3px;
+    border: 2px solid var(--btn-border); /* constant to avoid layout shift */
+    background: linear-gradient(180deg, var(--btn-bg-top) 0%, var(--btn-bg) 100%);
+    color: var(--btn-text);
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    box-shadow: var(--btn-shadow);
+    transition: background .15s ease, box-shadow .15s ease, transform .06s ease;
+}
+.btn-primary::before {
+    /* Rainbow border overlay (masked to border area only) */
+    content: "";
+    position: absolute;
+    inset: 0; /* match button rect */
+    padding: 2px; /* border thickness */
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--rbw-angle, 0deg),
+        #ff0040, #ff8000, #ffd400, #33d17a, #08c5ff, #4d39ff, #ff36d1, #ff0040
+    );
+    /* Mask out the inner area so only a ring remains */
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0; /* show only on hover */
+    pointer-events: none;
+}
+.btn-rainbow:hover {
+    border-color: transparent; /* reveal rainbow ring */
+}
+.btn-rainbow:hover::before {
+    opacity: 1;
+    animation: rbw-angle 1.8s linear infinite;
+}
+
+/* Animate the angle used by the conic-gradient so only colors move */
+@property --rbw-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+@keyframes rbw-angle { to { --rbw-angle: 360deg; } }
+
+.btn-primary:hover {
+    background: linear-gradient(180deg, var(--btn-bg-hover-top) 0%, var(--btn-bg-hover-bottom) 100%);
+    box-shadow: var(--btn-shadow-hover);
+}
+.btn-primary:focus,
+.btn-primary:focus-visible {
+    outline: 3px solid rgba(82,109,130,0.55);
+    outline-offset: 2px;
+}
+.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: var(--btn-shadow-active);
+    background: linear-gradient(180deg, var(--btn-bg-active-top) 0%, var(--btn-bg-active-bottom) 100%);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+
+/* Global layout and reset */
+* { box-sizing: border-box; }
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #DDE6ED; /* Global background */
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400; /* ensure regular weight */
+    color: #27374D;
+}
+
+/* Header, Footer, and Body-specific styles have been split into header.css, footer.css, and body.css */

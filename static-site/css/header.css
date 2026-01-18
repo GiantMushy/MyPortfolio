@@ -1,0 +1,28 @@
+/* Header-specific styles */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+.site-header {
+  background-color: #9DB2BF;
+  padding: 12px 24px;
+  width: 100%;
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-header .brand {
+  margin-top: 0px;
+}
+.site-header .nav-tabs .tab {
+  margin-left: 16px;
+  text-decoration: none;
+}
+.site-header .nav-tabs .tab:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "company": "Kóði ehf. (Hluthafaskrá.is)",
+    "startDate": "Jan 2025",
+    "endDate": "Aug 2025",
+    "description": "Hugbúnaðarþróun",
+    "skills": []
+  },
+  {
+    "company": "Háskólinn í Reykjavík",
+    "startDate": "Jan 2025",
+    "endDate": "Maí 2025",
+    "description": "Dæmatímakennari",
+    "skills": []
+  },
+  {
+    "company": "Hyundai BL Automotives",
+    "startDate": "Maí 2024",
+    "endDate": "Aug 2024",
+    "description": "Vöruflutningabílstjóri",
+    "skills": []
+  },
+  {
+    "company": "Sky Lagoon",
+    "startDate": "Maí 2023",
+    "endDate": "Aug 2023",
+    "description": "Lífvörður",
+    "skills": []
+  },
+  {
+    "company": "Ístak",
+    "startDate": "Des 2021",
+    "endDate": "Des 2022",
+    "description": "Húsasmiður (ólærður)",
+    "skills": []
+  },
+  {
+    "company": "1001 Verk",
+    "startDate": "Okt 2020",
+    "endDate": "Des 2021",
+    "description": "Húsasmiður (ólærður)",
+    "skills": []
+  },
+  {
+    "company": "Coripharma",
+    "startDate": "Maí 2020",
+    "endDate": "Okt 2020",
+    "description": "Hópstjóri",
+    "skills": []
+  },
+  {
+    "company": "1001 Verk",
+    "startDate": "Aug 2018",
+    "endDate": "Des 2019",
+    "description": "Húsasmiður (ólærður)",
+    "skills": []
+  },
+  {
+    "company": "Norðurál",
+    "startDate": "Maí 2018",
+    "endDate": "Aug 2018",
+    "description": "Starfsmaður í Kerskála (m/lyftarapróf)",
+    "skills": []
+  }
+]
