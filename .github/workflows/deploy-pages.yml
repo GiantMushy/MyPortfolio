@@ -124,16 +124,6 @@ jobs:
             curl -v http://localhost:5000/Test || echo "Test endpoint failed"
           fi
           
-          # Generate MyJourney page
-          echo "📄 Generating MyJourney page..."
-          if curl -f -s -o dist/myjourney.html http://localhost:5000/Home/MyJourney; then
-            echo "✅ Generated myjourney.html ($(wc -c < dist/myjourney.html) bytes)"
-          else
-            echo "⚠️  MyJourney page not available"
-            echo "🔍 Testing MyJourney endpoint:"
-            curl -v http://localhost:5000/Home/MyJourney || echo "MyJourney endpoint failed"
-          fi
-          
           # Fix paths for GitHub Pages subdirectory deployment
           echo "🔧 Fixing asset paths for GitHub Pages..."
           find dist -name "*.html" -type f -exec sed -i 's|="/css/|="css/|g' {} \;
@@ -141,11 +131,6 @@ jobs:
           find dist -name "*.html" -type f -exec sed -i 's|="/images/|="images/|g' {} \;
           find dist -name "*.html" -type f -exec sed -i 's|="/json/|="json/|g' {} \;
           find dist -name "*.html" -type f -exec sed -i 's|href="/|href="./|g' {} \;
-          
-          # Convert MVC routes to static HTML file links
-          echo "🔧 Converting MVC routes to static HTML links..."
-          find dist -name "*.html" -type f -exec sed -i 's|href="/Home/MyJourney"|href="myjourney.html"|g' {} \;
-          find dist -name "*.html" -type f -exec sed -i 's|href="/Education"|href="education.html"|g' {} \;
           
           echo "✅ Fixed asset paths to be relative"
           

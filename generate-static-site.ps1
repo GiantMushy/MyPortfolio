@@ -92,16 +92,6 @@ try {
     catch {
         Write-Host "⚠️  Could not generate test.html: $($_.Exception.Message)" -ForegroundColor Yellow
     }
-
-    # Generate MyJourney page
-    try {
-        $journeyContent = Invoke-WebRequest -Uri "http://localhost:5000/Home/MyJourney" -ErrorAction Stop
-        $journeyContent.Content | Out-File -FilePath "static-site\myjourney.html" -Encoding UTF8
-        Write-Host "✅ Generated myjourney.html" -ForegroundColor Green
-    }
-    catch {
-        Write-Host "⚠️  Could not generate myjourney.html: $($_.Exception.Message)" -ForegroundColor Yellow
-    }
 }
 catch {
     Write-Host "❌ Failed to generate pages: $($_.Exception.Message)" -ForegroundColor Red
@@ -112,20 +102,6 @@ finally {
     Stop-Job $job -ErrorAction SilentlyContinue
     Remove-Job $job -ErrorAction SilentlyContinue
 }
-
-# Post-process HTML files to convert MVC routes to static HTML links
-Write-Host "🔧 Post-processing HTML files..." -ForegroundColor Yellow
-Get-ChildItem "static-site\*.html" | ForEach-Object {
-    $content = Get-Content $_.FullName -Raw -Encoding UTF8
-    # Replace /Home/MyJourney with myjourney.html
-    $content = $content -replace '="/Home/MyJourney"', '="myjourney.html"'
-    $content = $content -replace "='/Home/MyJourney'", "='myjourney.html'"
-    # Replace other common routes if needed
-    $content = $content -replace '="/Education"', '="education.html"'
-    $content = $content -replace "='/Education'", "='education.html'"
-    $content | Out-File -FilePath $_.FullName -Encoding UTF8 -NoNewline
-}
-Write-Host "✅ Post-processing complete" -ForegroundColor Green
 
 # Copy CNAME if it exists
 if (Test-Path "CNAME") {

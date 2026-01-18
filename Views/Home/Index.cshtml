@@ -14,7 +14,24 @@
 </head>
 <body>
     <partial name="Header" />
-    <partial name="Body" />
+    <div id="main-body" style="display: block;">
+        <partial name="Body" />
+    </div>
+    <div id="journey-body" style="display: none;">
+        <partial name="MyJourneyBody" />
+    </div>
     <partial name="Footer" />
+    
+    <script>
+        function showMyJourney() {
+            document.getElementById('main-body').style.display = 'none';
+            document.getElementById('journey-body').style.display = 'block';
+        }
+        
+        function showHome() {
+            document.getElementById('main-body').style.display = 'block';
+            document.getElementById('journey-body').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
