@@ -92,6 +92,16 @@ try {
     catch {
         Write-Host "⚠️  Could not generate test.html: $($_.Exception.Message)" -ForegroundColor Yellow
     }
+
+    # Generate MyJourney page
+    try {
+        $journeyContent = Invoke-WebRequest -Uri "http://localhost:5000/Home/MyJourney" -ErrorAction Stop
+        $journeyContent.Content | Out-File -FilePath "static-site\myjourney.html" -Encoding UTF8
+        Write-Host "✅ Generated myjourney.html" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "⚠️  Could not generate myjourney.html: $($_.Exception.Message)" -ForegroundColor Yellow
+    }
 }
 catch {
     Write-Host "❌ Failed to generate pages: $($_.Exception.Message)" -ForegroundColor Red
@@ -103,17 +113,26 @@ finally {
     Remove-Job $job -ErrorAction SilentlyContinue
 }
 
+# Post-process HTML files to convert MVC routes to static HTML links
+Write-Host "🔧 Post-processing HTML files..." -ForegroundColor Yellow
+Get-ChildItem "static-site\*.html" | ForEach-Object {
+    $content = Get-Content $_.FullName -Raw -Encoding UTF8
+    # Replace /Home/MyJourney with myjourney.html
+    $content = $content -replace '="/Home/MyJourney"', '="myjourney.html"'
+    $content = $content -replace "='/Home/MyJourney'", "='myjourney.html'"
+    # Replace other common routes if needed
+    $content = $content -replace '="/Education"', '="education.html"'
+    $content = $content -replace "='/Education'", "='education.html'"
+    $content | Out-File -FilePath $_.FullName -Encoding UTF8 -NoNewline
+}
+Write-Host "✅ Post-processing complete" -ForegroundColor Green
+
 # Copy CNAME if it exists
 if (Test-Path "CNAME") {
     Copy-Item "CNAME" "static-site\" -Force
-    Write-Host "✅ Copied CNAME" -ForegroundColor Green
+    Write-Host "Copied CNAME" -ForegroundColor Green
 }
 
-Write-Host "🎉 Static site generation complete!" -ForegroundColor Green
-Write-Host "📁 Generated files:" -ForegroundColor Cyan
+Write-Host "Static site generation complete!" -ForegroundColor Green
+Write-Host "Generated files:" -ForegroundColor Cyan
 Get-ChildItem "static-site" -Recurse | ForEach-Object { Write-Host "   $($_.FullName)" -ForegroundColor White }
-
-Write-Host "`n💡 Next steps:" -ForegroundColor Yellow
-Write-Host "1. Review the generated files in the 'static-site' folder" -ForegroundColor White
-Write-Host "2. Copy the contents to your 'docs' folder or commit them to a 'gh-pages' branch" -ForegroundColor White
-Write-Host "3. Configure GitHub Pages to serve from the appropriate location" -ForegroundColor White
