@@ -2,12 +2,89 @@
 <link rel="stylesheet" href="@Url.Content("~/css/header.css")" />
 <div class="site-header">
     <div class="header-inner">
-        <h2 class="brand">Thor's Portfolio</h2>
-        <nav class="nav-tabs">
-            <a href="./" class="tab">Home</a>
-            <a href="#" class="tab">About</a>
-            <a href="#" class="tab">Contact</a>
-            <a href="#" class="tab">CV</a>
+        <div class="header-brand">
+            <div class="avatar-wrapper" id="avatar-wrapper">
+                <img class="header-avatar" src="@Url.Content("~/images/profile.png")" alt="Thor" />
+                <div class="profile-popup" id="profile-popup">
+                    <div class="popup-header">
+                        <img class="popup-avatar" src="@Url.Content("~/images/profile.png")" alt="Thor" />
+                        <div class="popup-name">
+                            <strong>Þorvarður Helgi Bjarnason</strong>
+                            <span>aspiring developer</span>
+                        </div>
+                    </div>
+                    <div class="popup-contacts">
+                        <div class="popup-contact-row">
+                            <img src="@Url.Content("~/images/personal_email.png")" alt="Email" />
+                            <span>thorrib@live.com</span>
+                        </div>
+                        <div class="popup-contact-row">
+                            <img src="@Url.Content("~/images/work_email.png")" alt="Email (RU)" />
+                            <span>thorvardur23@ru.is</span>
+                        </div>
+                        <div class="popup-contact-row">
+                            <img src="@Url.Content("~/images/phone.png")" alt="Phone" />
+                            <span>772-2112</span>
+                        </div>
+                        <div class="popup-contact-row">
+                            <img src="@Url.Content("~/images/discord.png")" alt="Discord" />
+                            <span>giant_mushroom</span>
+                        </div>
+                        <div class="popup-contact-row">
+                            <img src="@Url.Content("~/images/github.png")" alt="GitHub" />
+                            <a href="https://github.com/GiantMushy" target="_blank">github.com/GiantMushy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-brand-text">
+                <span class="brand-name">Thor</span>
+                <span class="brand-role">aspiring developer</span>
+            </div>
+        </div>
+        <nav class="section-tabs" id="section-tabs">
+            <button class="section-tab active" data-panel="0">
+                <span class="tab-icon-wrap">
+                    <img class="tab-icon tab-icon-default" src="@Url.Content("~/images/unity.png")" alt="" />
+                    <img class="tab-icon tab-icon-active" src="@Url.Content("~/images/unity-selected.png")" alt="" />
+                </span>
+                <span>Unity</span>
+            </button>
+            <button class="section-tab" data-panel="1">
+                <span class="tab-icon-wrap">
+                    <img class="tab-icon tab-icon-default" src="@Url.Content("~/images/python.png")" alt="" />
+                    <img class="tab-icon tab-icon-active" src="@Url.Content("~/images/python-selected.png")" alt="" />
+                </span>
+                <span>Python</span>
+            </button>
+            <button class="section-tab" data-panel="2">
+                <span class="tab-icon-wrap">
+                    <img class="tab-icon tab-icon-default" src="@Url.Content("~/images/web.png")" alt="" />
+                    <img class="tab-icon tab-icon-active" src="@Url.Content("~/images/web-selected.png")" alt="" />
+                </span>
+                <span>Web</span>
+            </button>
+            <button class="section-tab" data-panel="3">
+                <span class="tab-icon-wrap">
+                    <img class="tab-icon tab-icon-default" src="@Url.Content("~/images/teaching.png")" alt="" />
+                    <img class="tab-icon tab-icon-active" src="@Url.Content("~/images/teaching-selected.png")" alt="" />
+                </span>
+                <span>Teaching</span>
+            </button>
+            <button class="section-tab" data-panel="4">
+                <span class="tab-icon-wrap">
+                    <img class="tab-icon tab-icon-default" src="@Url.Content("~/images/woodworking.png")" alt="" />
+                    <img class="tab-icon tab-icon-active" src="@Url.Content("~/images/woodworking-selected.png")" alt="" />
+                </span>
+                <span>Woodworking</span>
+            </button>
         </nav>
+        <div class="header-actions">
+            <a href="@Url.Content("~/CV_2026.pdf")" download class="btn-primary btn-sm btn-cv">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download CV
+            </a>
+            <button onclick="showMyJourney()" class="btn-primary btn-rainbow btn-sm">My Journey</button>
+        </div>
     </div>
 </div>

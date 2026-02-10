@@ -133,6 +133,25 @@ body {
     font-family: 'Roboto Mono', monospace;
     font-weight: 400; /* ensure regular weight */
     color: #27374D;
+    overflow: hidden; /* prevent body scroll - carousel handles it */
+}
+
+/* Main content area fills remaining space */
+#main-body {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Journey view scrolls vertically */
+#journey-body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Dim tabs when in journey view */
+.tabs-dimmed {
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 /* Header, Footer, and Body-specific styles have been split into header.css, footer.css, and body.css */

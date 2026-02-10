@@ -7,31 +7,139 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home</title>
+    <title>Thor's Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
     <partial name="Header" />
-    <div id="main-body" style="display: block;">
+    <div id="main-body">
         <partial name="Body" />
     </div>
     <div id="journey-body" style="display: none;">
         <partial name="MyJourneyBody" />
+        <partial name="Footer" />
     </div>
-    <partial name="Footer" />
     
     <script>
+        // ===== Page View Toggle =====
         function showMyJourney() {
             document.getElementById('main-body').style.display = 'none';
             document.getElementById('journey-body').style.display = 'block';
+            document.querySelector('.section-tabs').classList.add('tabs-dimmed');
         }
         
         function showHome() {
             document.getElementById('main-body').style.display = 'block';
             document.getElementById('journey-body').style.display = 'none';
+            document.querySelector('.section-tabs').classList.remove('tabs-dimmed');
         }
+        
+        // ===== Carousel Navigation =====
+        (function() {
+            const track = document.getElementById('carousel-track');
+            if (!track) return;
+            
+            const tabs = document.querySelectorAll('.section-tab');
+            const dots = document.querySelectorAll('.dot');
+            const navLeft = document.getElementById('nav-left');
+            const navRight = document.getElementById('nav-right');
+            const panels = track.querySelectorAll('.panel');
+            const totalPanels = panels.length;
+            let currentPanel = 0;
+            
+            function goToPanel(index) {
+                if (index < 0 || index >= totalPanels) return;
+                currentPanel = index;
+                // Scroll the track to the panel
+                track.scrollTo({
+                    left: index * track.offsetWidth,
+                    behavior: 'smooth'
+                });
+                updateIndicators();
+            }
+            
+            function updateIndicators() {
+                // Update tab active states
+                tabs.forEach((tab, i) => tab.classList.toggle('active', i === currentPanel));
+                // Update dot active states
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === currentPanel));
+                // Show/hide nav arrows
+                if (navLeft) navLeft.classList.toggle('nav-hidden', currentPanel === 0);
+                if (navRight) navRight.classList.toggle('nav-hidden', currentPanel === totalPanels - 1);
+            }
+            
+            // Tab clicks
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => goToPanel(parseInt(tab.dataset.panel)));
+            });
+            
+            // Dot clicks
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => goToPanel(parseInt(dot.dataset.panel)));
+            });
+            
+            // Arrow clicks
+            if (navLeft) navLeft.addEventListener('click', () => goToPanel(currentPanel - 1));
+            if (navRight) navRight.addEventListener('click', () => goToPanel(currentPanel + 1));
+            
+            // Keyboard navigation (left/right arrows)
+            document.addEventListener('keydown', (e) => {
+                // Only when carousel is visible
+                if (document.getElementById('journey-body').style.display !== 'none') return;
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                if (e.key === 'ArrowRight') { e.preventDefault(); goToPanel(currentPanel + 1); }
+                if (e.key === 'ArrowLeft')  { e.preventDefault(); goToPanel(currentPanel - 1); }
+            });
+            
+            // Detect manual scroll / snap position
+            let scrollTimeout;
+            track.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const scrollLeft = track.scrollLeft;
+                    const panelWidth = track.offsetWidth;
+                    const newPanel = Math.round(scrollLeft / panelWidth);
+                    if (newPanel !== currentPanel && newPanel >= 0 && newPanel < totalPanels) {
+                        currentPanel = newPanel;
+                        updateIndicators();
+                    }
+                }, 60);
+            });
+            
+            // Handle window resize (recalculate scroll position)
+            window.addEventListener('resize', () => {
+                track.scrollTo({ left: currentPanel * track.offsetWidth, behavior: 'auto' });
+            });
+            
+            // Initialize
+            updateIndicators();
+        })();
+        
+        // ===== Profile Popup Toggle =====
+        (function() {
+            const wrapper = document.getElementById('avatar-wrapper');
+            const popup = document.getElementById('profile-popup');
+            if (!wrapper || !popup) return;
+            
+            wrapper.addEventListener('click', (e) => {
+                e.stopPropagation();
+                popup.classList.toggle('popup-visible');
+            });
+            
+            // Close popup when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!wrapper.contains(e.target)) {
+                    popup.classList.remove('popup-visible');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') popup.classList.remove('popup-visible');
+            });
+        })();
     </script>
 </body>
 </html>

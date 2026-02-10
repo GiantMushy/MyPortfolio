@@ -1,50 +1,42 @@
-@* Footer partial *@
+@* Footer partial - Scrollable section at bottom of each panel *@
 <link rel="stylesheet" href="@Url.Content("~/css/footer.css")" />
-<div class="site-footer">
+<footer class="site-footer">
   <div class="footer-inner">
-    <div class="contact-info">
-      <h2>Contact Info</h2>
-
-      <div class="contact-columns">
-        <div>
-          <div class="footer-contact-data">
-            <img class="icon" src="@Url.Content("~/images/personal_email.png")" alt="Email">
-            <p>thorrib@live.com</p>
-          </div>
-          <div class="footer-contact-data">
-            <img class="icon" src="@Url.Content("~/images/work_email.png")" alt="Email (RU)">
-            <p>thorvardur23@ru.is</p>
-          </div>
-          <div class="footer-contact-data">
-            <img class="icon" src="@Url.Content("~/images/phone.png")" alt="Phone">
-            <p>772-2112</p>
-          </div>
+    <div class="footer-section">
+      <h3 class="footer-heading">Contact Info</h3>
+      <div class="footer-contact-grid">
+        <div class="footer-contact-row">
+          <img src="@Url.Content("~/images/personal_email.png")" alt="Email" width="18" height="18" />
+          <span>thorrib@live.com</span>
         </div>
-
-        <div>
-          <div class="footer-contact-data">
-            <img class="icon" src="@Url.Content("~/images/discord.png")" alt="Discord">
-            <p>giant_mushroom</p>
-          </div>
-          <div class="footer-contact-data">
-            <img class="icon" src="@Url.Content("~/images/github.png")" alt="GitHub">
-            <p>github.com/GiantMushy</p>
-          </div>
-          <div class="footer-contact-data">
-            <img class="icon" src="@Url.Content("~/images/linkedin.png")" alt="Name">
-            <p>Þorvarður Helgi Bjarnason</p>
-          </div>
+        <div class="footer-contact-row">
+          <img src="@Url.Content("~/images/work_email.png")" alt="Email (RU)" width="18" height="18" />
+          <span>thorvardur23@ru.is</span>
+        </div>
+        <div class="footer-contact-row">
+          <img src="@Url.Content("~/images/phone.png")" alt="Phone" width="18" height="18" />
+          <span>772-2112</span>
+        </div>
+        <div class="footer-contact-row">
+          <img src="@Url.Content("~/images/discord.png")" alt="Discord" width="18" height="18" />
+          <span>giant_mushroom</span>
+        </div>
+        <div class="footer-contact-row">
+          <img src="@Url.Content("~/images/github.png")" alt="GitHub" width="18" height="18" />
+          <a href="https://github.com/GiantMushy" target="_blank">github.com/GiantMushy</a>
+        </div>
+        <div class="footer-contact-row">
+          <img src="@Url.Content("~/images/linkedin.png")" alt="LinkedIn" width="18" height="18" />
+          <span>Þorvarður Helgi Bjarnason</span>
         </div>
       </div>
     </div>
-
-    <div class="thank-you-msg">
-      <h2>Thank you!</h2>
-      <div>
-        <p>
-          Thank you for taking an interest in my work! I greatly appreciate any feedback from whomever wants to give it. Don't hesitate to contact me anywhere you'd like (⌒‿⌒)
-        </p>
-      </div>
+    <div class="footer-section footer-thankyou">
+      <h3 class="footer-heading">Thank you!</h3>
+      <p>Thank you for taking an interest in my work! I greatly appreciate any feedback from whomever wants to give it. Don't hesitate to contact me anywhere you'd like (⌒‿⌒)</p>
     </div>
   </div>
-</div>
+  <div class="footer-bottom">
+    <span>© 2026 Þorvarður Helgi Bjarnason</span>
+  </div>
+</footer>

@@ -1,58 +1,123 @@
-/* Footer-specific styles */
+/* ===== Footer - Full-width section at end of panel scroll ===== */
 
 .site-footer {
-  background-color: #9DB2BF;
+  margin-top: 64px;
+  background: #27374D;
   width: 100%;
-  margin-top: auto;
 }
 
+/* Top accent line */
+.site-footer::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #526D82, #9DB2BF, #526D82);
+}
+
+/* Safety: no image in the footer should ever blow up */
+.site-footer img {
+  max-width: 18px;
+  max-height: 18px;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* --- Two-column layout --- */
 .footer-inner {
   display: grid;
-  grid-template-columns: 2fr 1.5fr;
-  gap: 24px;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
   align-items: start;
-  min-height: 60px;
-  padding: 16px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 36px 24px;
 }
 
-.contact-info {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  margin-left: 50px;
-  gap: 12px;
+/* --- Section headings --- */
+.footer-heading {
+  color: #DDE6ED;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(82, 109, 130, 0.35);
 }
 
-.contact-columns {
+/* --- Contact grid --- */
+.footer-contact-grid {
   display: grid;
-  grid-template-columns: max-content max-content;
-  column-gap: 24px;
-  row-gap: 12px;
-  justify-content: start;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
 }
 
-.footer-contact-data {
-  display: grid;
-  grid-template-columns: 20px auto;
+.footer-contact-row {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  width: fit-content;
-}
-.footer-contact-data .icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  display: block;
+  gap: 10px;
+  padding: 4px 0;
 }
 
-.thank-you-msg p {
-  max-width: 46ch;
+.footer-contact-row img {
+  filter: brightness(0) invert(0.85);
+  transition: filter 0.2s ease;
+}
+.footer-contact-row:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.footer-contact-row span,
+.footer-contact-row a {
+  color: #DDE6ED;
+  font-size: 0.8rem;
+  text-decoration: none;
+  white-space: nowrap;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+.footer-contact-row:hover span,
+.footer-contact-row a:hover {
+  color: #fff;
+}
+
+/* --- Thank-you section --- */
+.footer-thankyou p {
+  color: #DDE6ED;
+  font-size: 0.8rem;
+  line-height: 1.7;
   margin: 0;
 }
 
-/* Stack on small screens */
-@media (max-width: 700px) {
-  .footer-inner { grid-template-columns: 1fr; }
-  .contact-columns { grid-template-columns: 1fr; column-gap: 0; }
-  .thank-you-msg { margin-left: 50px; }
+/* --- Bottom bar with copyright --- */
+.footer-bottom {
+  border-top: 1px solid rgba(82, 109, 130, 0.2);
+  padding: 12px 36px;
+  text-align: center;
+}
+.footer-bottom span {
+  color: rgba(157, 178, 191, 0.5);
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .site-footer {
+    margin-top: 48px;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 20px 16px;
+  }
+  .footer-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .footer-bottom {
+    padding: 10px 20px;
+  }
 }
