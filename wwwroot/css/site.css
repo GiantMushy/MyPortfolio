@@ -139,7 +139,7 @@ body {
 /* Main content area fills remaining space */
 #main-body {
     flex: 1;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 /* Journey view scrolls vertically */

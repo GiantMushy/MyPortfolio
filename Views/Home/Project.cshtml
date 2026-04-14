@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Project";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thor's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/project.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/body.css")" />
+</head>
+<body>
+    <partial name="Header" />
+    <main class="project-page-content">
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync(ViewData["PartialName"]!.ToString()!)
+        </div>
+        <partial name="Footer" />
+    </main>
+</body>
+</html>

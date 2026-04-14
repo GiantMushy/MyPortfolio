@@ -1,107 +1,134 @@
-@* Body partial - Horizontal Carousel Layout *@
-<link rel="stylesheet" href="css/body.css" />
-<link rel="stylesheet" href="css/project.css" />
+@* Body partial - Hero Card + Project Thumbnail Grid *@
+<link rel="stylesheet" href="@Url.Content("~/css/body.css")" />
+<link rel="stylesheet" href="@Url.Content("~/css/project.css")" />
 
-<div class="carousel-wrapper">
-    <!-- Carousel Track -->
-    <div class="carousel-track" id="carousel-track">
+<div class="portfolio-wrapper">
 
-        <!-- ===== Unity Panel ===== -->
-        <section class="panel" data-index="0">
-            <div class="panel-inner">
-                <div class="panel-header">
-                    <img class="panel-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-                    <h1 class="panel-title">Unity</h1>
+    <!-- ===== Hero Card ===== -->
+    <section class="hero-card">
+        <img class="hero-avatar" src="@Url.Content("~/images/profile.png")" alt="Þorvarður Helgi Bjarnason" />
+        <div class="hero-info">
+            <h1 class="hero-name">Þorvarður Helgi Bjarnason</h1>
+            <p class="hero-title">aspiring developer</p>
+            <div class="hero-contacts">
+                <div class="hero-contact-row">
+                    <img src="@Url.Content("~/images/personal_email.png")" alt="Email" />
+                    <span>thorrib&#64;live.com</span>
                 </div>
-                <div class="panel-content">
-                    @await Html.PartialAsync("_FellowPirates")
-                    <div class="project-divider"></div>
-                    @await Html.PartialAsync("_CultOfTheJarls")
-                    <div class="project-divider"></div>
-                    @await Html.PartialAsync("_Aseprite")
+                <div class="hero-contact-row">
+                    <img src="@Url.Content("~/images/work_email.png")" alt="Email (RU)" />
+                    <span>thorvardur23&#64;ru.is</span>
+                </div>
+                <div class="hero-contact-row">
+                    <img src="@Url.Content("~/images/phone.png")" alt="Phone" />
+                    <span>(⁺354) 772-2112</span>
+                </div>
+                <div class="hero-contact-row">
+                    <img src="@Url.Content("~/images/discord.png")" alt="Discord" />
+                    <span>giant_mushroom</span>
+                </div>
+                <div class="hero-contact-row">
+                    <img src="@Url.Content("~/images/github.png")" alt="GitHub" />
+                    <a href="https://github.com/GiantMushy" target="_blank">github.com/GiantMushy</a>
+                </div>
+                <div class="hero-contact-row">
+                    <img src="@Url.Content("~/images/unity-selected.png")" alt="itch.io" />
+                    <a href="https://giantmushy.itch.io/" target="_blank">giantmushy.itch.io</a>
+                </div>
+                <div class="hero-contact-row">
+                    <img src="@Url.Content("~/images/linkedin.png")" alt="LinkedIn" />
+                    <span>Þorvarður Helgi Bjarnason</span>
                 </div>
             </div>
-            <partial name="Footer" />
-        </section>
+        </div>
+    </section>
 
-        <!-- ===== Python Panel ===== -->
-        <section class="panel" data-index="1">
-            <div class="panel-inner">
-                <div class="panel-header">
-                    <img class="panel-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
-                    <h1 class="panel-title">Python</h1>
-                </div>
-                <div class="panel-content">
-                    @await Html.PartialAsync("_NanAir")
-                    <div class="project-divider"></div>
-                    @await Html.PartialAsync("_CarGame2D")
-                    <div class="project-divider"></div>
-                    @await Html.PartialAsync("_CarGame3D")
-                </div>
-            </div>
-            <partial name="Footer" />
-        </section>
+    <!-- ===================================================================
+         PROJECT THUMBNAILS
+         To change a thumbnail image, edit the src attribute on the
+         <img class="card-thumbnail"> element for that project.
+         =================================================================== -->
+    <section class="thumbnail-grid">
 
-        <!-- ===== Web Panel ===== -->
-        <section class="panel" data-index="2">
-            <div class="panel-inner">
-                <div class="panel-header">
-                    <img class="panel-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
-                    <h1 class="panel-title">Web</h1>
-                </div>
-                <div class="panel-content">
-                    @await Html.PartialAsync("_Nestor")
-                    <div class="project-divider"></div>
-                    @await Html.PartialAsync("_Kodi")
-                </div>
-            </div>
-            <partial name="Footer" />
-        </section>
+        <!-- ===== THUMBNAIL: Clean It With Fire ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "cleanitwithfire" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/CleanItWithFire-viscera.png")" alt="Clean It With Fire" />
+            <span class="card-title">Clean It With Fire</span>
+        </a>
 
-        <!-- ===== Teaching Panel ===== -->
-        <section class="panel" data-index="3">
-            <div class="panel-inner">
-                <div class="panel-header">
-                    <img class="panel-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
-                    <h1 class="panel-title">Teaching</h1>
-                </div>
-                <div class="panel-content">
-                    @await Html.PartialAsync("_Teaching")
-                </div>
-            </div>
-            <partial name="Footer" />
-        </section>
+        <!-- ===== THUMBNAIL: Fellow Pirates ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "fellowpirates" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/FellowPirates.png")" alt="Fellow Pirates" />
+            <span class="card-title">Fellow Pirates</span>
+        </a>
 
-        <!-- ===== Woodworking Panel ===== -->
-        <section class="panel" data-index="4">
-            <div class="panel-inner">
-                <div class="panel-header">
-                    <img class="panel-icon" src="@Url.Content("~/images/woodworking-selected.png")" alt="Woodworking" />
-                    <h1 class="panel-title">Woodworking</h1>
-                </div>
-                <div class="panel-content">
-                    @await Html.PartialAsync("_Woodworking")
-                </div>
-            </div>
-            <partial name="Footer" />
-        </section>
+        <!-- ===== THUMBNAIL: Cult of the Jarls ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "cultofthejarls" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/TLJ-bigPicture.png")" alt="Cult of the Jarls" />
+            <span class="card-title">Cult of the Jarls</span>
+        </a>
 
-    </div>
+        <!-- ===== THUMBNAIL: Aseprite ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "aseprite" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/aseprite-jarls.png")" alt="Aseprite" />
+            <span class="card-title">Aseprite</span>
+        </a>
 
-    <!-- Navigation Arrows -->
-    <button class="nav-arrow nav-left" id="nav-left" aria-label="Previous section">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <button class="nav-arrow nav-right" id="nav-right" aria-label="Next section">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-    </button>
+        <!-- ===== THUMBNAIL: NanAir ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "nanair" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/NanAir.png")" alt="NanAir" />
+            <span class="card-title">NanAir</span>
+        </a>
 
-    <!-- Panel Indicator Dots -->
-    <div class="panel-dots" id="panel-dots">
-        <span class="dot active" data-panel="0"></span>
-        <span class="dot" data-panel="1"></span>
-        <span class="dot" data-panel="2"></span>
-        <span class="dot" data-panel="3"></span>
-        <span class="dot" data-panel="4"></span>
-    </div>
+        <!-- ===== THUMBNAIL: Naascar 2D ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "cargame2d" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_2D.gif")" alt="Naascar 2D" />
+            <span class="card-title">Naascar 2D</span>
+        </a>
+
+        <!-- ===== THUMBNAIL: Naascar 3D ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "cargame3d" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_3D.gif")" alt="Naascar 3D" />
+            <span class="card-title">Naascar 3D</span>
+        </a>
+
+        <!-- ===== THUMBNAIL: Nestor ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "nestor" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/Nestor-frontPage.png")" alt="Nestor" />
+            <span class="card-title">Nestor</span>
+        </a>
+
+        <!-- ===== THUMBNAIL: Hluthafaskrá (Kóði) ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "kodi" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/Hluthafaskra-forntPage.png")" alt="Hluthafaskrá" />
+            <span class="card-title">Hluthafaskrá</span>
+        </a>
+
+        <!-- ===== THUMBNAIL: Teaching ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "teaching" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
+            <img class="card-thumbnail card-thumbnail-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
+            <span class="card-title">Teaching</span>
+        </a>
+
+        <!-- ===== THUMBNAIL: Woodworking ===== -->
+        <a href="@Url.Action("Project", "Home", new { id = "woodworking" })" class="project-card">
+            <img class="card-category-icon" src="@Url.Content("~/images/woodworking-selected.png")" alt="Woodworking" />
+            <img class="card-thumbnail" src="@Url.Content("~/images/projects/Construction/Table.png")" alt="Woodworking" />
+            <span class="card-title">Woodworking</span>
+        </a>
+
+    </section>
+
 </div>
+
+<partial name="Footer" />

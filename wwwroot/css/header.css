@@ -28,9 +28,9 @@
   flex-shrink: 0;
 }
 
-.avatar-wrapper {
-  position: relative;
-  cursor: pointer;
+.brand-home-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .header-avatar {
