@@ -33,6 +33,28 @@
             document.getElementById('main-body').style.display = 'block';
             document.getElementById('journey-body').style.display = 'none';
         }
+
+        // ===== Project Detail Navigation =====
+        function showProject(id) {
+            document.getElementById('portfolio-view').style.display = 'none';
+            // Hide all detail sections first
+            document.querySelectorAll('.project-detail-section').forEach(function(el) {
+                el.style.display = 'none';
+            });
+            var detail = document.getElementById('project-detail-' + id);
+            if (detail) {
+                detail.style.display = 'block';
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function showGrid() {
+            document.querySelectorAll('.project-detail-section').forEach(function(el) {
+                el.style.display = 'none';
+            });
+            document.getElementById('portfolio-view').style.display = '';
+            window.scrollTo(0, 0);
+        }
     </script>
 </body>
 </html>

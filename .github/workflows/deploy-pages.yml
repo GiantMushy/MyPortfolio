@@ -91,55 +91,26 @@ jobs:
           # Generate static HTML files
           echo "🔄 Generating static pages..."
           
-          # Generate home page with detailed logging
+          # Generate home page (single-page app with all project views embedded)
           echo "📄 Generating home page..."
           if curl -f -s -o dist/index.html http://localhost:5000/; then
             echo "✅ Generated index.html ($(wc -c < dist/index.html) bytes)"
-            echo "🔍 Preview of generated index.html:"
-            head -20 dist/index.html
           else
             echo "❌ Failed to generate index.html from ASP.NET app"
-            echo "📋 Using fallback wwwroot/index.html"
-            echo "🔍 Current dist/index.html content:"
-            head -10 dist/index.html
+            exit 1
           fi
           
-          # Generate education page
-          echo "📄 Generating education page..."
-          if curl -f -s -o dist/education.html http://localhost:5000/Education; then
-            echo "✅ Generated education.html ($(wc -c < dist/education.html) bytes)"
-          else
-            echo "⚠️  Education page not available"
-            echo "🔍 Testing Education endpoint:"
-            curl -v http://localhost:5000/Education || echo "Education endpoint failed"
-          fi
-          
-          # Generate test page
-          echo "📄 Generating test page..."
-          if curl -f -s -o dist/test.html http://localhost:5000/Test; then
-            echo "✅ Generated test.html ($(wc -c < dist/test.html) bytes)"
-          else
-            echo "⚠️  Test page not available"
-            echo "🔍 Testing Test endpoint:"
-            curl -v http://localhost:5000/Test || echo "Test endpoint failed"
-          fi
-          
-          # ===== Generate project detail pages =====
-          echo "📄 Generating project detail pages..."
-          mkdir -p dist/Home/Project
-          PROJECTS="cleanitwithfire fellowpirates cultofthejarls aseprite nanair cargame2d cargame3d nestor kodi teaching woodworking"
-          for project in $PROJECTS; do
-            echo "  📄 Project: $project"
-            if curl -f -s -o "dist/Home/Project/${project}.html" "http://localhost:5000/Home/Project/${project}"; then
-              echo "  ✅ Generated ${project}.html ($(wc -c < "dist/Home/Project/${project}.html") bytes)"
-            else
-              echo "  ⚠️  Failed to generate ${project}.html"
-            fi
-          done
-          
-          # Path handling: absolute paths work correctly with custom domain (CNAME)
-          # No need to strip leading slashes — /css/, /images/, /js/ resolve from domain root
-          echo "✅ Using absolute paths (compatible with custom domain CNAME)"
+          # Fix paths for GitHub Pages deployment
+          # The ASP.NET app generates absolute paths like /css/site.css
+          # GitHub Pages serves from /MyPortfolio/ subpath, so these break
+          # Convert all absolute asset paths to relative (safe for root-level index.html)
+          echo "🔧 Fixing asset paths for GitHub Pages..."
+          find dist -name "*.html" -type f -exec sed -i 's|="/css/|="css/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|="/js/|="js/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|="/images/|="images/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|="/json/|="json/|g' {} \;
+          find dist -name "*.html" -type f -exec sed -i 's|="/CV_|="CV_|g' {} \;
+          echo "✅ Fixed asset paths to be relative"
           
           # Stop the application gracefully
           echo "🛑 Stopping application..."

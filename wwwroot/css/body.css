@@ -161,7 +161,16 @@
 .project-detail-wrapper {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 32px 60px 48px;
+  padding: 16px 60px 48px;
+}
+
+/* Back button in inline project detail sections */
+.back-to-grid {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  text-decoration: none;
 }
 
 /* ===== Responsive ===== */

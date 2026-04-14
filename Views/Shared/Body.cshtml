@@ -1,133 +1,254 @@
-@* Body partial - Hero Card + Project Thumbnail Grid *@
+@* Body partial - Hero Card + Project Thumbnail Grid (Single Page) *@
 <link rel="stylesheet" href="@Url.Content("~/css/body.css")" />
 <link rel="stylesheet" href="@Url.Content("~/css/project.css")" />
 
 <div class="portfolio-wrapper">
 
-    <!-- ===== Hero Card ===== -->
-    <section class="hero-card">
-        <img class="hero-avatar" src="@Url.Content("~/images/profile.png")" alt="Þorvarður Helgi Bjarnason" />
-        <div class="hero-info">
-            <h1 class="hero-name">Þorvarður Helgi Bjarnason</h1>
-            <p class="hero-title">aspiring developer</p>
-            <div class="hero-contacts">
-                <div class="hero-contact-row">
-                    <img src="@Url.Content("~/images/personal_email.png")" alt="Email" />
-                    <span>thorrib&#64;live.com</span>
-                </div>
-                <div class="hero-contact-row">
-                    <img src="@Url.Content("~/images/work_email.png")" alt="Email (RU)" />
-                    <span>thorvardur23&#64;ru.is</span>
-                </div>
-                <div class="hero-contact-row">
-                    <img src="@Url.Content("~/images/phone.png")" alt="Phone" />
-                    <span>(⁺354) 772-2112</span>
-                </div>
-                <div class="hero-contact-row">
-                    <img src="@Url.Content("~/images/discord.png")" alt="Discord" />
-                    <span>giant_mushroom</span>
-                </div>
-                <div class="hero-contact-row">
-                    <img src="@Url.Content("~/images/github.png")" alt="GitHub" />
-                    <a href="https://github.com/GiantMushy" target="_blank">github.com/GiantMushy</a>
-                </div>
-                <div class="hero-contact-row">
-                    <img src="@Url.Content("~/images/unity-selected.png")" alt="itch.io" />
-                    <a href="https://giantmushy.itch.io/" target="_blank">giantmushy.itch.io</a>
-                </div>
-                <div class="hero-contact-row">
-                    <img src="@Url.Content("~/images/linkedin.png")" alt="LinkedIn" />
-                    <span>Þorvarður Helgi Bjarnason</span>
+    <!-- ================================================================
+         PORTFOLIO VIEW (Hero + Grid) — shown by default
+         ================================================================ -->
+    <div id="portfolio-view">
+
+        <!-- ===== Hero Card ===== -->
+        <section class="hero-card">
+            <img class="hero-avatar" src="@Url.Content("~/images/profile.png")" alt="Þorvarður Helgi Bjarnason" />
+            <div class="hero-info">
+                <h1 class="hero-name">Þorvarður Helgi Bjarnason</h1>
+                <p class="hero-title">aspiring developer</p>
+                <div class="hero-contacts">
+                    <div class="hero-contact-row">
+                        <img src="@Url.Content("~/images/personal_email.png")" alt="Email" />
+                        <span>thorrib&#64;live.com</span>
+                    </div>
+                    <div class="hero-contact-row">
+                        <img src="@Url.Content("~/images/work_email.png")" alt="Email (RU)" />
+                        <span>thorvardur23&#64;ru.is</span>
+                    </div>
+                    <div class="hero-contact-row">
+                        <img src="@Url.Content("~/images/phone.png")" alt="Phone" />
+                        <span>(⁺354) 772-2112</span>
+                    </div>
+                    <div class="hero-contact-row">
+                        <img src="@Url.Content("~/images/discord.png")" alt="Discord" />
+                        <span>giant_mushroom</span>
+                    </div>
+                    <div class="hero-contact-row">
+                        <img src="@Url.Content("~/images/github.png")" alt="GitHub" />
+                        <a href="https://github.com/GiantMushy" target="_blank">github.com/GiantMushy</a>
+                    </div>
+                    <div class="hero-contact-row">
+                        <img src="@Url.Content("~/images/unity-selected.png")" alt="itch.io" />
+                        <a href="https://giantmushy.itch.io/" target="_blank">giantmushy.itch.io</a>
+                    </div>
+                    <div class="hero-contact-row">
+                        <img src="@Url.Content("~/images/linkedin.png")" alt="LinkedIn" />
+                        <span>Þorvarður Helgi Bjarnason</span>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <!-- ===================================================================
+             PROJECT THUMBNAILS
+             To change a thumbnail image, edit the src attribute on the
+             <img class="card-thumbnail"> element for that project.
+             =================================================================== -->
+        <section class="thumbnail-grid">
+
+            <!-- ===== THUMBNAIL: Clean It With Fire ===== -->
+            <a href="#" onclick="showProject('cleanitwithfire'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/CleanItWithFire-viscera.png")" alt="Clean It With Fire" />
+                <span class="card-title">Clean It With Fire</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Fellow Pirates ===== -->
+            <a href="#" onclick="showProject('fellowpirates'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/FellowPirates.png")" alt="Fellow Pirates" />
+                <span class="card-title">Fellow Pirates</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Cult of the Jarls ===== -->
+            <a href="#" onclick="showProject('cultofthejarls'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/TLJ-bigPicture.png")" alt="Cult of the Jarls" />
+                <span class="card-title">Cult of the Jarls</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Aseprite ===== -->
+            <a href="#" onclick="showProject('aseprite'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/aseprite-jarls.png")" alt="Aseprite" />
+                <span class="card-title">Aseprite</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: NanAir ===== -->
+            <a href="#" onclick="showProject('nanair'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/NanAir.png")" alt="NanAir" />
+                <span class="card-title">NanAir</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Naascar 2D ===== -->
+            <a href="#" onclick="showProject('cargame2d'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_2D.gif")" alt="Naascar 2D" />
+                <span class="card-title">Naascar 2D</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Naascar 3D ===== -->
+            <a href="#" onclick="showProject('cargame3d'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_3D.gif")" alt="Naascar 3D" />
+                <span class="card-title">Naascar 3D</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Nestor ===== -->
+            <a href="#" onclick="showProject('nestor'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/Nestor-frontPage.png")" alt="Nestor" />
+                <span class="card-title">Nestor</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Hluthafaskrá (Kóði) ===== -->
+            <a href="#" onclick="showProject('kodi'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/Hluthafaskra-forntPage.png")" alt="Hluthafaskrá" />
+                <span class="card-title">Hluthafaskrá</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Teaching ===== -->
+            <a href="#" onclick="showProject('teaching'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
+                <img class="card-thumbnail card-thumbnail-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
+                <span class="card-title">Teaching</span>
+            </a>
+
+            <!-- ===== THUMBNAIL: Woodworking ===== -->
+            <a href="#" onclick="showProject('woodworking'); return false;" class="project-card">
+                <img class="card-category-icon" src="@Url.Content("~/images/woodworking-selected.png")" alt="Woodworking" />
+                <img class="card-thumbnail" src="@Url.Content("~/images/projects/Construction/Table.png")" alt="Woodworking" />
+                <span class="card-title">Woodworking</span>
+            </a>
+
+        </section>
+
+    </div>
+
+    <!-- ================================================================
+         PROJECT DETAIL VIEWS — hidden by default, shown when clicking a card
+         ================================================================ -->
+
+    <div id="project-detail-cleanitwithfire" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
+        </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_CleanItWithFire")
         </div>
-    </section>
+    </div>
 
-    <!-- ===================================================================
-         PROJECT THUMBNAILS
-         To change a thumbnail image, edit the src attribute on the
-         <img class="card-thumbnail"> element for that project.
-         =================================================================== -->
-    <section class="thumbnail-grid">
-
-        <!-- ===== THUMBNAIL: Clean It With Fire ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "cleanitwithfire" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/CleanItWithFire-viscera.png")" alt="Clean It With Fire" />
-            <span class="card-title">Clean It With Fire</span>
+    <div id="project-detail-fellowpirates" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_FellowPirates")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Fellow Pirates ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "fellowpirates" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/FellowPirates.png")" alt="Fellow Pirates" />
-            <span class="card-title">Fellow Pirates</span>
+    <div id="project-detail-cultofthejarls" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_CultOfTheJarls")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Cult of the Jarls ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "cultofthejarls" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/TLJ-bigPicture.png")" alt="Cult of the Jarls" />
-            <span class="card-title">Cult of the Jarls</span>
+    <div id="project-detail-aseprite" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_Aseprite")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Aseprite ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "aseprite" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/aseprite-jarls.png")" alt="Aseprite" />
-            <span class="card-title">Aseprite</span>
+    <div id="project-detail-nanair" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_NanAir")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: NanAir ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "nanair" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/NanAir.png")" alt="NanAir" />
-            <span class="card-title">NanAir</span>
+    <div id="project-detail-cargame2d" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_CarGame2D")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Naascar 2D ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "cargame2d" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_2D.gif")" alt="Naascar 2D" />
-            <span class="card-title">Naascar 2D</span>
+    <div id="project-detail-cargame3d" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_CarGame3D")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Naascar 3D ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "cargame3d" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_3D.gif")" alt="Naascar 3D" />
-            <span class="card-title">Naascar 3D</span>
+    <div id="project-detail-nestor" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_Nestor")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Nestor ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "nestor" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/Nestor-frontPage.png")" alt="Nestor" />
-            <span class="card-title">Nestor</span>
+    <div id="project-detail-kodi" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_Kodi")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Hluthafaskrá (Kóði) ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "kodi" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/Hluthafaskra-forntPage.png")" alt="Hluthafaskrá" />
-            <span class="card-title">Hluthafaskrá</span>
+    <div id="project-detail-teaching" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_Teaching")
+        </div>
+    </div>
 
-        <!-- ===== THUMBNAIL: Teaching ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "teaching" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
-            <img class="card-thumbnail card-thumbnail-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
-            <span class="card-title">Teaching</span>
+    <div id="project-detail-woodworking" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
         </a>
-
-        <!-- ===== THUMBNAIL: Woodworking ===== -->
-        <a href="@Url.Action("Project", "Home", new { id = "woodworking" })" class="project-card">
-            <img class="card-category-icon" src="@Url.Content("~/images/woodworking-selected.png")" alt="Woodworking" />
-            <img class="card-thumbnail" src="@Url.Content("~/images/projects/Construction/Table.png")" alt="Woodworking" />
-            <span class="card-title">Woodworking</span>
-        </a>
-
-    </section>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_Woodworking")
+        </div>
+    </div>
 
 </div>
 
