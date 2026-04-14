@@ -124,15 +124,22 @@ jobs:
             curl -v http://localhost:5000/Test || echo "Test endpoint failed"
           fi
           
-          # Fix paths for GitHub Pages subdirectory deployment
-          echo "🔧 Fixing asset paths for GitHub Pages..."
-          find dist -name "*.html" -type f -exec sed -i 's|="/css/|="css/|g' {} \;
-          find dist -name "*.html" -type f -exec sed -i 's|="/js/|="js/|g' {} \;
-          find dist -name "*.html" -type f -exec sed -i 's|="/images/|="images/|g' {} \;
-          find dist -name "*.html" -type f -exec sed -i 's|="/json/|="json/|g' {} \;
-          find dist -name "*.html" -type f -exec sed -i 's|href="/|href="./|g' {} \;
+          # ===== Generate project detail pages =====
+          echo "📄 Generating project detail pages..."
+          mkdir -p dist/Home/Project
+          PROJECTS="cleanitwithfire fellowpirates cultofthejarls aseprite nanair cargame2d cargame3d nestor kodi teaching woodworking"
+          for project in $PROJECTS; do
+            echo "  📄 Project: $project"
+            if curl -f -s -o "dist/Home/Project/${project}.html" "http://localhost:5000/Home/Project/${project}"; then
+              echo "  ✅ Generated ${project}.html ($(wc -c < "dist/Home/Project/${project}.html") bytes)"
+            else
+              echo "  ⚠️  Failed to generate ${project}.html"
+            fi
+          done
           
-          echo "✅ Fixed asset paths to be relative"
+          # Path handling: absolute paths work correctly with custom domain (CNAME)
+          # No need to strip leading slashes — /css/, /images/, /js/ resolve from domain root
+          echo "✅ Using absolute paths (compatible with custom domain CNAME)"
           
           # Stop the application gracefully
           echo "🛑 Stopping application..."
