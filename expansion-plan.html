@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Expansion Plan</title>
+<style>
+  :root {
+    --bg: #16202c;
+    --panel: #27374D;
+    --panel-2: #1e2d3f;
+    --line: rgba(157, 178, 191, 0.25);
+    --slate: #526D82;
+    --mist: #9DB2BF;
+    --paper: #DDE6ED;
+    --green: #7fc98f;
+    --amber: #e8c268;
+    --red: #e88a8a;
+    --blue: #8ab6e8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--paper);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    padding: 40px 16px 80px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { margin: 0 0 4px; font-size: 1.9rem; letter-spacing: 0.5px; }
+  .subtitle { color: var(--mist); margin: 0 0 24px; font-size: 0.95rem; }
+
+  .summary-bar {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 28px;
+  }
+  .summary-bar .count { font-weight: 700; font-size: 1.05rem; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-left: auto; font-size: 0.78rem; color: var(--mist); }
+  .legend span::before { content: "●"; margin-right: 5px; }
+  .legend .l-not::before { color: var(--slate); }
+  .legend .l-prog::before { color: var(--amber); }
+  .legend .l-done::before { color: var(--green); }
+  .legend .l-wait::before { color: var(--blue); }
+
+  .context {
+    background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+    font-size: 0.9rem; color: var(--mist);
+  }
+  .context strong { color: var(--paper); }
+
+  .task {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 20px;
+  }
+  .task-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 2px; }
+  .task h2 { margin: 0; font-size: 1.2rem; }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+  .badge {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+    padding: 3px 10px; border-radius: 20px; text-transform: uppercase;
+    border: 1px solid transparent; white-space: nowrap;
+  }
+  .b-status-not     { background: rgba(82,109,130,0.25);  color: var(--mist);  border-color: var(--slate); }
+  .b-status-prog    { background: rgba(232,194,104,0.12); color: var(--amber); border-color: rgba(232,194,104,0.5); }
+  .b-status-done    { background: rgba(127,201,143,0.12); color: var(--green); border-color: rgba(127,201,143,0.5); }
+  .b-status-waiting { background: rgba(138,182,232,0.12); color: var(--blue);  border-color: rgba(138,182,232,0.5); }
+  .b-diff-easy   { background: rgba(127,201,143,0.1); color: var(--green); }
+  .b-diff-medium { background: rgba(232,194,104,0.1); color: var(--amber); }
+  .b-diff-hard   { background: rgba(232,138,138,0.1); color: var(--red); }
+
+  .covers { font-size: 0.78rem; color: var(--mist); margin: 4px 0 12px; }
+  .covers b { color: var(--paper); }
+  .chip {
+    display: inline-block; background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 6px; padding: 1px 8px; margin: 0 3px 3px 0; font-size: 0.75rem; color: var(--paper);
+  }
+
+  .task .summary { margin: 0 0 12px; font-size: 0.95rem; }
+  .task ul { margin: 0 0 6px; padding-left: 20px; font-size: 0.88rem; color: var(--paper); }
+  .task li { margin-bottom: 7px; }
+  .task li::marker { color: var(--slate); }
+  .muted { color: var(--mist); }
+  .note {
+    margin-top: 14px; padding: 10px 14px; border-left: 3px solid var(--slate);
+    background: var(--panel-2); border-radius: 0 8px 8px 0;
+    font-size: 0.83rem; color: var(--mist);
+  }
+  .note strong { color: var(--paper); }
+  .scope-line { font-size: 0.8rem; color: var(--mist); margin-top: 12px; }
+  .scope-line b { color: var(--paper); font-weight: 600; }
+
+  .qcard {
+    background: var(--panel-2); border: 1px dashed rgba(138,182,232,0.45);
+    border-radius: 12px; padding: 18px 22px; margin-bottom: 16px;
+  }
+  .qcard h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--blue); }
+  .qcard p { margin: 0 0 6px; font-size: 0.88rem; }
+  .qcard .default { font-size: 0.8rem; color: var(--mist); }
+  .qcard .default b { color: var(--paper); }
+
+  h2.section { margin: 40px 0 16px; font-size: 1.25rem; border-bottom: 2px solid var(--line); padding-bottom: 8px; }
+  .order { font-size: 0.92rem; }
+  .order b { color: var(--paper); }
+  .arrow { color: var(--slate); padding: 0 6px; }
+  footer { margin-top: 48px; text-align: center; color: var(--slate); font-size: 0.78rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Portfolio Expansion Plan</h1>
+  <p class="subtitle">giantmushy.github.io/MyPortfolio &mdash; drafted 2026&#8209;09&#8209;19 &middot; tabs, job experience &amp; teams &middot; statuses update as work lands</p>
+
+  <div class="summary-bar">
+    <span class="count" id="progress-count"></span>
+    <div class="legend">
+      <span class="l-not">Not started</span>
+      <span class="l-prog">In progress</span>
+      <span class="l-done">Done</span>
+      <span class="l-wait">Waiting on you</span>
+    </div>
+  </div>
+
+  <div class="context">
+    <strong>What's changing:</strong> the single project grid becomes three tabs &mdash;
+    <strong>Projects</strong> (default) &middot; <strong>Job Experience</strong> &middot; <strong>Teams</strong>.
+    Switching tabs is instant in the browser, no page loads &mdash; the same trick the project pages already use,
+    so it fits the site's publish-a-snapshot setup with no new machinery.
+    <br /><br />
+    <strong>The one honest limitation, verified today:</strong> LinkedIn shows logged-out visitors a sign-up wall,
+    so my own built-in browser <em>cannot</em> read your profile or posts directly. It's still very doable, two ways:
+    <strong>(1)</strong> I drive your own Chrome through the Claude extension &mdash; you're signed in there, I read the
+    Experiences section and the two Gamescom posts, and ask your OK before saving any photos; or
+    <strong>(2)</strong> you upload screenshots of the Experiences section plus the post photos here.
+    Either way the rest of the plan is unaffected.
+  </div>
+
+  <div id="tasks"></div>
+
+  <h2 class="section">Agreed order</h2>
+  <p class="order">
+    <b>A. Tabs &amp; reshuffle</b><span class="arrow">&rarr;</span>
+    <b>C. LinkedIn harvest</b><span class="arrow">&rarr;</span>
+    <b>B. State Your Case</b><span class="arrow">&rarr;</span>
+    <b>D. Job Experience tab</b><span class="arrow">&rarr;</span>
+    <b>E. Teams tab</b>
+  </p>
+  <p class="muted" style="font-size:0.85rem">
+    A stands alone and creates the (initially empty) Job Experience and Teams tabs. C runs second
+    (your call, 2026&#8209;09&#8209;19) so the Angry Puffin Gamescom post can feed the State Your Case
+    description in B. C is also the gate for D and E &mdash; no card can be written before its LinkedIn
+    text and pictures exist. D goes before E because E reuses D's horizontal-card skeleton and swaps
+    the logo for a photo carousel.
+  </p>
+
+  <h2 class="section">UI/UX decisions (answered 2026&#8209;09&#8209;19)</h2>
+  <div id="questions"></div>
+
+  <h2 class="section">Defaults I'll use unless you say otherwise</h2>
+  <div class="context" style="margin-bottom:0">
+    <ul style="margin:0; padding-left:20px; font-size:0.88rem;">
+      <li>Projects tab card order: <b>State Your Case first</b> (newest work leads), then the current order, Woodworking last.</li>
+      <li>I read your "State Your Case <i>(new!)</i>" as enthusiasm, not a request for a literal <b>New!</b> ribbon on the card &mdash; if you'd actually like a little ribbon, say the word, it's cheap.</li>
+      <li>Job Experience cards run <b>newest first</b>, and the duration line mirrors LinkedIn's wording (e.g. "Jun 2024 &ndash; Present &middot; 1 yr 4 mos").</li>
+      <li>Job &amp; Team cards are clean panels &mdash; <b>no time badges or category icons</b>; those stay a Projects-grid thing.</li>
+      <li>Team photo carousels use the <b>same arrows + dots</b> as project pages, manual only, no auto-advance.</li>
+      <li>On phones the horizontal cards <b>stack</b>: logo (or photo carousel) on top, text below.</li>
+      <li>Team photos live in numbered folders exactly like project images (<span class="chip">images/teams/angry_puffin_games/angry_puffin_games_1.jpg</span> &hellip;) &mdash; renaming reorders them, same as everywhere else.</li>
+      <li>The site always opens on the <b>Projects</b> tab; tab choice isn't remembered between visits.</li>
+      <li>Hluthafaskr&aacute;'s one screenshot gets deleted from the repo as instructed (git history keeps a copy forever if you ever regret it).</li>
+    </ul>
+  </div>
+
+  <footer>Single-file plan &middot; lives at the repo root (not deployed) &middot; safe to edit statuses in the TASKS list at the top of the file's script</footer>
+</div>
+
+<script>
+// ============================================================
+// STATUS VALUES: "not" | "prog" | "done" | "waiting"
+// Update these as work progresses.
+// ============================================================
+const TASKS = [
+  {
+    id: "A",
+    title: "A. Tab bar & content reshuffle",
+    status: "done",
+    difficulty: "medium",
+    covers: ["Tabs: Projects / Job Experience / Teams", "Remove Hluthafaskrá card", "Move Teaching out", "Keep Woodworking"],
+    summary: "The structural change everything else hangs off: a tab bar above the grid, and the Projects tab slimmed down to actual projects.",
+    details: [
+      "<b>Tab bar</b> sits between the hero and the cards: <span class='chip'>Projects</span> <span class='chip'>Job Experience</span> <span class='chip'>Teams</span>, Projects selected by default. Visual style is question Q1.",
+      "<b>Hluthafaskrá</b> leaves the Projects grid entirely — card, detail page and its single screenshot all go. Its story gets one line inside the Kóði ehf. job card (group D).",
+      "<b>Teaching</b> leaves the Projects grid too and is reborn as a Job Experience card (group D). It never had pictures, so nothing else moves.",
+      "<b>Woodworking stays</b> in Projects, as decided — it's a hobby, not a job.",
+      "<b>Aseprite</b> wasn't on your list either way — question Q2.",
+      "The mobile <i>auto-play the gif you're looking at</i> behaviour learns about tabs, so it only watches cards on the visible Projects tab.",
+      "Job Experience and Teams tabs ship <b>empty but styled</b> in this group (a quiet 'coming soon' placeholder), so A can land and be smoke-tested before the LinkedIn content exists."
+    ],
+    note: "Landed 2026-09-19. Underline tab bar with a sliding ink line; Hluthafaskrá and Teaching cards, pages and the screenshot removed; Job Experience & Teams show styled placeholders. Verified locally: tab switching, placeholders, detail pages and back-navigation all behave."
+  },
+  {
+    id: "B",
+    title: "B. State Your Case — new project page",
+    status: "done",
+    difficulty: "easy",
+    covers: ["New card in Projects", "Detail page", "Time badge?", "Play link?"],
+    summary: "The images have been sitting ready since the redesign (7 numbered files, menu + scoreboard gifs with posters already generated). Thanks to the uniform template, the page itself is the easy part.",
+    details: [
+      "New card in the Projects grid (first position) with the usual hover-to-play gif behaviour, plus a detail page with title → carousel → description → gallery, all driven by the existing <span class='chip'>state_your_case</span> folder.",
+      "<b>Waiting on you:</b> the description text — or, once I can read the Angry Puffin Games Gamescom post (group C), I draft it from there and you edit.",
+      "<b>Waiting on you:</b> how long it took (for the stopwatch badge), and a play link if the game is somewhere public (itch.io?) — that decides whether the card gets the ▶ badge.",
+      "Its two gifs are lean, so no performance worries here."
+    ],
+    note: "Done 2026-09-19: card sits first in the grid, detail page live with carousel + gallery, description drafted from the Angry Puffin LinkedIn post (your edit welcome), 'follow along' link points to the Angry Puffin Games site. Decided: no play badge and no time badge until release."
+  },
+  {
+    id: "C",
+    title: "C. LinkedIn harvest — experiences, posts, photos, logos",
+    status: "done",
+    difficulty: "easy",
+    covers: ["Experiences section", "Angry Puffin Gamescom post", "Disgruntled Janitors Gamescom post", "Company logos"],
+    summary: "The content-gathering gate for D and E. Logged-out browsers hit LinkedIn's sign-up wall (verified), so per Q4 this runs through your signed-in Chrome via the Claude extension.",
+    details: [
+      "<b>From the Experiences section:</b> every role's title, company, dates/duration and description — excluding Game Makers Iceland, which belongs to the Teams tab instead.",
+      "<b>From your posts:</b> the Angry Puffin Games Gamescom post and the Disgruntled Janitors Gamescom post — their text (raw material for the team descriptions) and their photos.",
+      "<b>Logos:</b> each workplace's logo for the Job Experience cards (from LinkedIn's company pages or the companies' own sites — Klar Banking, Kóði ehf., and whatever else Experiences lists).",
+      "Photos and logos get saved into the repo's image folders; if I'm fetching them myself I'll ask your OK before downloading, batch by batch.",
+      "Once gathered, I'll show you the harvested text before it goes on the site — you stay editor-in-chief of your own CV."
+    ],
+    note: "Done 2026-09-19. Text harvested through your Chrome (all 7 experience entries + three posts, short links resolved); logos fetched from company sites and your Angry Puffin repo; the Gamescom photos LinkedIn wouldn't release came from your Pictures folder instead — 12 photos resized web-friendly (max 1600px) into images/teams/."
+  },
+  {
+    id: "D",
+    title: "D. Job Experience tab — horizontal career cards",
+    status: "done",
+    difficulty: "medium",
+    covers: ["Full-width cards", "Logo left", "Title / company + duration / description", "Kóði ehf. absorbs Hluthafaskrá", "Teaching card"],
+    summary: "A new card style: full-width horizontal panels, one per role, mirroring your LinkedIn Experiences (minus Game Makers Iceland).",
+    details: [
+      "<b>Layout per card:</b> workplace logo on the left; header is <i>your title there</i>; subheader is the company name plus how long you worked there; description below the subheader when LinkedIn has one.",
+      "<b>Kóði ehf.</b> gets the Hluthafaskrá shareholder-registry work folded into its description — the old project page's essence in a sentence or two, no picture.",
+      "<b>Teaching</b> becomes a card here, matching however it appears in your LinkedIn Experiences.",
+      "Cards run newest-first, top to bottom. On phones the logo stacks above the text.",
+      "Per Q3: the <b>company name links out</b> to their site in a new tab with the small external-link icon, matching the hero links. Descriptions here stay short and sweet — the long storytelling lives in the Teams tab."
+    ],
+    note: "Done 2026-09-19: six cards mirroring LinkedIn (KLAR Banking · AI Orchestrator, RU Teacher Assistant, Kóði ehf. with Hluthafaskrá folded in, Ístak, 1001 Verk, Coripharma). Logos fetched from the companies' own sites; 1001 Verk has no findable logo so its card wears a clean '1001' tile. Hero title deliberately left as 'Junior Developer' per your call."
+  },
+  {
+    id: "E",
+    title: "E. Teams tab — Angry Puffin Games & Disgruntled Janitors",
+    status: "done",
+    difficulty: "hard",
+    covers: ["Horizontal cards with photo carousel", "Gamescom stories", "Post photos"],
+    summary: "Same horizontal-card idea as D, but the left side grows from a logo into a proper photo carousel, and the descriptions tell the Gamescom stories from your posts.",
+    details: [
+      "<b>Layout per card:</b> a larger photo carousel on the left (same arrows-and-dots component the project pages use, sized for a card), team name and description on the right.",
+      "<b>Expandable (per Q3):</b> collapsed, a card shows the carousel, team name and the opening lines of the story; clicking unfolds the full description. Job cards don't do this — only Teams, where the text runs long.",
+      "<b>Angry Puffin Games</b> (the State Your Case team): photos from your Gamescom post in the carousel, description written from that post's story — going to Gamescom, showing the game, the team.",
+      "<b>Disgruntled Janitors</b> (the Clean It With Fire team): same treatment from its Gamescom post.",
+      "<b>Game Makers Iceland</b> lives here rather than in Job Experience, per your instruction — sourced from Experiences but presented as a community/team. <span class='muted'>(If GMI has no photos, its card falls back to the logo-left layout from D.)</span>",
+      "I draft both descriptions from the posts; you get final edit before they ship.",
+      "The hardest part is honest photo curation + a carousel variant that behaves inside a card at every screen size — hence the 'harder' sticker."
+    ],
+    note: "Done 2026-09-19, revised after smoketest: photos are your own curation (3 per team from the APG / Disgruntled Janitors subfolders; GMI photo + pink logo), the desktop layout was rebuilt (a stylesheet-order bug let the full-page carousel styles override the card-sized ones: oversized photos bleeding into the text), photos now fill a 4:3 frame edge to edge with proper gutters, and every em dash was purged from the site copy. Renaming files in images/teams/<team>/ reorders slides; adding numbered files adds them, same convention as projects."
+  }
+];
+
+const QUESTIONS = [
+  {
+    id: "Q1",
+    title: "Q1 — What should the tab bar look like?",
+    body: "Three candidates: quiet centered text labels with a sliding underline; rounded pill/segmented buttons (like the ▶ Play pill); or boxed folder-style tabs attached to the content area.",
+    def: "&#10003; Decided: <b>underline tabs</b> — centered labels with a smooth underline sliding to the active one."
+  },
+  {
+    id: "Q2",
+    title: "Q2 — Does the Aseprite card stay?",
+    body: "Your Projects list didn't mention it, but you also didn't retire it the way you did Hluthafaskrá and Teaching. Keep it in Projects, or remove it?",
+    def: "&#10003; Decided: <b>Aseprite stays</b> in the Projects tab."
+  },
+  {
+    id: "Q3",
+    title: "Q3 — Are Job Experience / Team cards clickable?",
+    body: "Options: fully static panels; company/team name links out (new tab, little external-link icon, consistent with the hero); or collapsed cards that expand to show the description.",
+    def: "&#10003; Decided: <b>split by tab</b> — Job Experience cards get the company link (new tab + external-link icon) and keep descriptions short &amp; sweet; Team cards are <b>expandable</b>, because team stories run long: collapsed shows the opening lines, a click unfolds the full description."
+  },
+  {
+    id: "Q4",
+    title: "Q4 — How do I read your LinkedIn?",
+    body: "Logged-out browsers get the sign-up wall (verified). Either I drive your signed-in Chrome via the Claude extension — reading Experiences and the two Gamescom posts, asking before saving photos — or you upload screenshots and photos here.",
+    def: "&#10003; Decided: <b>through your signed-in Chrome</b> via the Claude extension — I read Experiences + the two Gamescom posts there, and ask your OK batch-by-batch before saving photos/logos."
+  }
+];
+
+// ---------- render ----------
+const STATUS_LABEL = { not: "Not started", prog: "In progress", done: "Done", waiting: "Waiting on you" };
+const DIFF_LABEL = { easy: "Easy", medium: "Medium", hard: "Harder" };
+
+const tasksEl = document.getElementById("tasks");
+TASKS.forEach(t => {
+  const el = document.createElement("div");
+  el.className = "task";
+  el.innerHTML = `
+    <div class="task-head">
+      <h2>${t.title}</h2>
+      <div class="badges">
+        <span class="badge b-diff-${t.difficulty}">${DIFF_LABEL[t.difficulty]}</span>
+        <span class="badge b-status-${t.status}">${STATUS_LABEL[t.status]}</span>
+      </div>
+    </div>
+    <div class="covers"><b>Covers:</b> ${t.covers.map(c => `<span class="chip">${c}</span>`).join("")}</div>
+    <p class="summary">${t.summary}</p>
+    <ul>${t.details.map(d => `<li>${d}</li>`).join("")}</ul>
+    ${t.note ? `<div class="note"><strong>Note:</strong> ${t.note}</div>` : ""}
+  `;
+  tasksEl.appendChild(el);
+});
+
+const qEl = document.getElementById("questions");
+QUESTIONS.forEach(q => {
+  const el = document.createElement("div");
+  el.className = "qcard";
+  el.innerHTML = `<h3>${q.title}</h3><p>${q.body}</p><p class="default">${q.def}</p>`;
+  qEl.appendChild(el);
+});
+
+const done = TASKS.filter(t => t.status === "done").length;
+document.getElementById("progress-count").textContent = `${done} of ${TASKS.length} task groups done`;
+</script>
+</body>
+</html>

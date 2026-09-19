@@ -21,9 +21,9 @@
 }
 
 .hero-avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 18px;
   object-fit: cover;
   border: 3px solid #526D82;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
@@ -92,6 +92,338 @@
 
 .hero-contact-row a:hover {
   color: #DDE6ED;
+}
+
+/* ===== Tab bar (Projects / Job Experience / Teams) ===== */
+.tab-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 44px;
+  margin: -6px 0 32px;
+  border-bottom: 1px solid rgba(82, 109, 130, 0.35);
+}
+
+.tab-link {
+  background: none;
+  border: none;
+  padding: 10px 2px 13px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #526D82;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.tab-link:hover,
+.tab-link.active {
+  color: #27374D;
+}
+
+/* The sliding underline; left/width are set from js/tabs.js */
+.tab-ink {
+  position: absolute;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 2px;
+  background: #27374D;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-placeholder {
+  margin: 0 0 48px;
+  padding: 70px 20px;
+  text-align: center;
+  color: #526D82;
+  font-style: italic;
+  border: 1px dashed rgba(82, 109, 130, 0.4);
+  border-radius: 12px;
+}
+
+/* ===== Job Experience cards (horizontal, full-width) ===== */
+.xp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 48px;
+}
+
+.xp-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background: rgba(157, 178, 191, 0.15);
+  border: 1px solid rgba(157, 178, 191, 0.25);
+  border-radius: 12px;
+  padding: 22px 26px;
+}
+
+.xp-logo {
+  flex-shrink: 0;
+  width: 110px;
+  height: 72px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(157, 178, 191, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.xp-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.xp-logo-fallback {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #526D82;
+}
+
+.xp-title {
+  margin: 0 0 3px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #27374D;
+}
+
+.xp-sub {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #526D82;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 12px;
+}
+
+.xp-sub a {
+  color: #27374D;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(82, 109, 130, 0.35);
+  transition: border-color 0.2s ease;
+}
+
+.xp-sub a:hover {
+  border-color: #27374D;
+}
+
+.xp-company-plain {
+  color: #27374D;
+  font-weight: 600;
+}
+
+.xp-desc {
+  margin: 10px 0 0;
+  font-size: 0.88rem;
+  color: #27374D;
+  line-height: 1.6;
+  max-width: 72ch;
+}
+
+@media (max-width: 700px) {
+  .xp-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .xp-sub {
+    justify-content: center;
+  }
+
+  .xp-desc {
+    text-align: left;
+  }
+}
+
+/* ===== Team cards (horizontal, photo carousel left, expandable story) ===== */
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 48px;
+}
+
+.team-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  background: rgba(157, 178, 191, 0.15);
+  border: 1px solid rgba(157, 178, 191, 0.25);
+  border-radius: 12px;
+  padding: 26px 30px;
+}
+
+.team-media {
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+/* Compact variant of the detail-page carousel, sized for a card.
+   Scoped under .team-media so these rules outrank project.css's base
+   .carousel styles (full-bleed margins, clamp() height) regardless of
+   stylesheet load order. Photos fill the 4:3 frame edge to edge. */
+.team-media .carousel {
+  margin: 0;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+}
+
+.team-media .carousel-slide img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+}
+
+.team-media .carousel-arrow {
+  width: 30px;
+  height: 30px;
+}
+
+.team-media .carousel-prev { left: 10px; }
+.team-media .carousel-next { right: 10px; }
+
+.team-media-fallback {
+  aspect-ratio: 4 / 3;
+  background: #fff;
+  border: 1px solid rgba(157, 178, 191, 0.35);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.team-media-fallback img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.team-media-fallback span {
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: #9DB2BF;
+}
+
+.team-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.team-name {
+  margin: 0 0 3px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #27374D;
+}
+
+.team-name a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(82, 109, 130, 0.35);
+  transition: border-color 0.2s ease;
+}
+
+.team-name a:hover {
+  border-color: #27374D;
+}
+
+.team-meta {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  color: #526D82;
+}
+
+/* Collapsed: a few lines with a fade; .team-open removes the clamp */
+.team-desc {
+  position: relative;
+  overflow: hidden;
+  max-height: 7.6em;
+  font-size: 0.88rem;
+  color: #27374D;
+  line-height: 1.6;
+  transition: max-height 0.35s ease;
+}
+
+.team-desc p {
+  margin: 0 0 10px;
+}
+
+.team-desc::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.4em;
+  background: linear-gradient(rgba(211, 222, 230, 0), #D3DEE6);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.team-card.team-open .team-desc {
+  max-height: 2000px;
+}
+
+.team-card.team-open .team-desc::after {
+  opacity: 0;
+}
+
+.team-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #526D82;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.team-toggle:hover {
+  color: #27374D;
+}
+
+.team-toggle svg {
+  transition: transform 0.25s ease;
+}
+
+.team-card.team-open .team-toggle svg {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 860px) {
+  .team-card {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .team-media {
+    flex-basis: auto;
+    max-width: none;
+    width: 100%;
+  }
 }
 
 /* ===== Thumbnail Grid ===== */
@@ -250,6 +582,13 @@
   background: rgba(39, 55, 77, 0.95);
 }
 
+/* Portrait/mobile-game thumbnails: show the whole frame on a dark backing
+   instead of cropping (object-fit: cover would slice a phone screen in half) */
+.card-thumbnail-contain {
+  object-fit: contain;
+  background: linear-gradient(135deg, #27374D 0%, #1e2d3f 100%);
+}
+
 /* For projects with no real thumbnail (e.g. Teaching) - icon as placeholder */
 .card-thumbnail-icon {
   object-fit: contain;
@@ -301,6 +640,11 @@
     gap: 20px;
   }
 
+  .hero-avatar {
+    width: 170px;
+    height: 170px;
+  }
+
   .hero-contacts {
     grid-template-columns: 1fr;
     gap: 8px;
@@ -310,6 +654,15 @@
   .thumbnail-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+  }
+
+  .tab-bar {
+    gap: 22px;
+  }
+
+  .tab-link {
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
   }
 
   .project-detail-wrapper {

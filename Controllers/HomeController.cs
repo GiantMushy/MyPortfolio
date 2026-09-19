@@ -22,6 +22,7 @@ public class HomeController : Controller
     {
         var validProjects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
+            { "stateyourcase", "_StateYourCase" },
             { "cleanitwithfire", "_CleanItWithFire" },
             { "fellowpirates", "_FellowPirates" },
             { "cultofthejarls", "_CultOfTheJarls" },
@@ -30,8 +31,6 @@ public class HomeController : Controller
             { "cargame2d", "_CarGame2D" },
             { "cargame3d", "_CarGame3D" },
             { "nestor", "_Nestor" },
-            { "kodi", "_Kodi" },
-            { "teaching", "_Teaching" },
             { "woodworking", "_Woodworking" },
         };
 

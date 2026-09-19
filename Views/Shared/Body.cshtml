@@ -49,6 +49,14 @@
             </div>
         </section>
 
+        <!-- ===== Tab bar: Projects / Job Experience / Teams ===== -->
+        <nav class="tab-bar" role="tablist" aria-label="Portfolio sections">
+            <button type="button" id="tab-btn-projects" class="tab-link active" role="tab" aria-selected="true" aria-controls="tab-panel-projects" onclick="showTab('projects')">Projects</button>
+            <button type="button" id="tab-btn-experience" class="tab-link" role="tab" aria-selected="false" aria-controls="tab-panel-experience" onclick="showTab('experience')">Job Experience</button>
+            <button type="button" id="tab-btn-teams" class="tab-link" role="tab" aria-selected="false" aria-controls="tab-panel-teams" onclick="showTab('teams')">Teams</button>
+            <span class="tab-ink" aria-hidden="true"></span>
+        </nav>
+
         <!-- ===================================================================
              PROJECT THUMBNAILS
              Each card shows the STILL of image #1 from wwwroot/images/projects/<slug>/
@@ -58,19 +66,19 @@
         @{
             var cards = new[]
             {
+                new { Id = "stateyourcase",   Slug = "state_your_case",    Title = "State Your Case",    Icon = "unity-selected.png",       IconAlt = "Unity",       Play = (string?)null,                                            Time = (string?)null },
                 new { Id = "cleanitwithfire", Slug = "clean_it_with_fire", Title = "Clean It With Fire", Icon = "unity-selected.png",       IconAlt = "Unity",       Play = (string?)"https://giantmushy.itch.io/clean-it-with-fire", Time = (string?)"3 weeks" },
-                new { Id = "fellowpirates",   Slug = "fellow_pirates",     Title = "Fellow Pirates",     Icon = "unity-selected.png",       IconAlt = "Unity",       Play = "https://evarut.itch.io/fellow-pirates",          Time = "2 weeks" },
-                new { Id = "cultofthejarls",  Slug = "cult_of_the_jarls",  Title = "Cult of the Jarls",  Icon = "unity-selected.png",       IconAlt = "Unity",       Play = "https://giantmushy.itch.io/guns-gods-galleons",  Time = "2 weeks" },
+                new { Id = "fellowpirates",   Slug = "fellow_pirates",     Title = "Fellow Pirates",     Icon = "unity-selected.png",       IconAlt = "Unity",       Play = (string?)"https://evarut.itch.io/fellow-pirates", Time = (string?)"2 weeks" },
+                new { Id = "cultofthejarls",  Slug = "cult_of_the_jarls",  Title = "Cult of the Jarls",  Icon = "unity-selected.png",       IconAlt = "Unity",       Play = (string?)"https://giantmushy.itch.io/guns-gods-galleons", Time = (string?)"2 weeks" },
                 new { Id = "aseprite",        Slug = "aseprite",           Title = "Aseprite",           Icon = "unity-selected.png",       IconAlt = "Unity",       Play = (string?)null,                                    Time = (string?)null },
-                new { Id = "nanair",          Slug = "nanair",             Title = "NanAir",             Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = "3 weeks" },
-                new { Id = "cargame2d",       Slug = "naascar_2d",         Title = "Naascar 2D",         Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = "2 weeks" },
-                new { Id = "cargame3d",       Slug = "naascar_3d",         Title = "Naascar 3D",         Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = "3 weeks" },
-                new { Id = "nestor",          Slug = "nestor",             Title = "Nestor",             Icon = "web-selected.png",         IconAlt = "Web",         Play = (string?)null,                                    Time = "3 weeks" },
-                new { Id = "kodi",            Slug = "hluthafaskra",       Title = "Hluthafaskrá",       Icon = "web-selected.png",         IconAlt = "Web",         Play = (string?)null,                                    Time = "5 months" },
-                new { Id = "teaching",        Slug = "teaching",           Title = "Teaching",           Icon = "teaching-selected.png",    IconAlt = "Teaching",    Play = (string?)null,                                    Time = (string?)null },
+                new { Id = "nanair",          Slug = "nanair",             Title = "NanAir",             Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = (string?)"3 weeks" },
+                new { Id = "cargame2d",       Slug = "naascar_2d",         Title = "Naascar 2D",         Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = (string?)"2 weeks" },
+                new { Id = "cargame3d",       Slug = "naascar_3d",         Title = "Naascar 3D",         Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = (string?)"3 weeks" },
+                new { Id = "nestor",          Slug = "nestor",             Title = "Nestor",             Icon = "web-selected.png",         IconAlt = "Web",         Play = (string?)null,                                    Time = (string?)"3 weeks" },
                 new { Id = "woodworking",     Slug = "woodworking",        Title = "Woodworking",        Icon = "woodworking-selected.png", IconAlt = "Woodworking", Play = (string?)null,                                    Time = (string?)null },
             };
         }
+        <section class="tab-panel" id="tab-panel-projects" role="tabpanel" aria-labelledby="tab-btn-projects">
         <section class="thumbnail-grid">
             @foreach (var c in cards)
             {
@@ -102,7 +110,8 @@
                     <div class="card-media">
                         @if (slides.Count > 0)
                         {
-                            <img class="card-thumbnail" src="@Url.Content(slides[0].Still)" alt="@c.Title" />
+                            @* Mobile-game (portrait) shots are letterboxed rather than cropped *@
+                            <img class="card-thumbnail@(c.Slug == "state_your_case" ? " card-thumbnail-contain" : "")" src="@Url.Content(slides[0].Still)" alt="@c.Title" />
                         }
                         else
                         {
@@ -122,12 +131,194 @@
                 </div>
             }
         </section>
+        </section>
+
+        <!-- ===== Job Experience tab — mirrors the LinkedIn Experiences section ===== -->
+        @{
+            var jobs = new[]
+            {
+                new { Title = "AI Orchestrator",         Company = "KLAR Banking",        Url = (string?)"https://www.klarbanking.com/", Logo = (string?)"companies/klar.png",       Fallback = (string?)null,   Meta = "Full-time · May 2026 - Present",              Desc = (string?)null },
+                new { Title = "Teacher Assistant",       Company = "Reykjavik University", Url = (string?)"https://en.ru.is/",           Logo = (string?)"companies/ru.png",         Fallback = (string?)null,   Meta = "Part-time · Jan 2025 - May 2026 · 1 yr 5 mos", Desc = (string?)"Teaching assistant in Mathematics, Data Structures, Web Development, and Programming Languages, collaborating with professors on lesson plans and educational materials." },
+                new { Title = "Software Developer",      Company = "Kóði ehf.",            Url = (string?)"https://www.kodi.is/",        Logo = (string?)"companies/kodi.svg",       Fallback = (string?)null,   Meta = "Jan 2025 - Aug 2025 · 8 mos",                  Desc = (string?)"Started as a student intern and stayed on as a full-time developer, building Hluthafaskrá.is, Kóði's shareholder registry and shareholder-meeting platform. Full-stack work in C#, SQL and .NET/Razor. Those are the same skills that built the very website you're reading." },
+                new { Title = "Specialized Laborer",     Company = "Ístak",                Url = (string?)"https://www.istak.is/",       Logo = (string?)"companies/istak.png",      Fallback = (string?)null,   Meta = "Full-time · Dec 2021 - Dec 2022 · 1 yr 1 mo",  Desc = (string?)null },
+                new { Title = "Carpenter Assistant",     Company = "1001 Verk",            Url = (string?)null,                          Logo = (string?)null,                       Fallback = (string?)"1001", Meta = "Full-time · Dec 2018 - Dec 2021 · 3 yrs 1 mo", Desc = (string?)"On-and-off carpentry work in Selfoss, about 2.5 years on the tools in total, around other opportunities." },
+                new { Title = "Production Team Manager", Company = "Coripharma",           Url = (string?)"https://coripharma.com/",     Logo = (string?)"companies/coripharma.svg", Fallback = (string?)null,   Meta = "Full-time · May 2020 - Aug 2020 · 4 mos",      Desc = (string?)null },
+            };
+        }
+        <section class="tab-panel" id="tab-panel-experience" role="tabpanel" aria-labelledby="tab-btn-experience" hidden>
+            <div class="xp-list">
+                @foreach (var j in jobs)
+                {
+                    <article class="xp-card">
+                        <div class="xp-logo">
+                            @if (j.Logo != null)
+                            {
+                                <img src="@Url.Content($"~/images/{j.Logo}")" alt="@j.Company logo" loading="lazy" />
+                            }
+                            else
+                            {
+                                <span class="xp-logo-fallback">@j.Fallback</span>
+                            }
+                        </div>
+                        <div class="xp-body">
+                            <h3 class="xp-title">@j.Title</h3>
+                            <p class="xp-sub">
+                                @if (j.Url != null)
+                                {
+                                    <a href="@j.Url" target="_blank" rel="noopener">@j.Company<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                                }
+                                else
+                                {
+                                    <span class="xp-company-plain">@j.Company</span>
+                                }
+                                <span class="xp-dates">@j.Meta</span>
+                            </p>
+                            @if (j.Desc != null)
+                            {
+                                <p class="xp-desc">@j.Desc</p>
+                            }
+                        </div>
+                    </article>
+                }
+            </div>
+        </section>
+
+        <!-- ===== Teams tab — photo carousels come from wwwroot/images/teams/<slug>/ ===== -->
+        @{
+            var teams = new[]
+            {
+                new
+                {
+                    Slug = "angry_puffin_games", Name = "Angry Puffin Games",
+                    Url = (string?)"https://giantmushy.github.io/AngryPuffinGamesSite/",
+                    Meta = "The team behind State Your Case",
+                    FallbackImg = (string?)"companies/angry_puffin_full.png", FallbackText = (string?)null,
+                    Paragraphs = new[]
+                    {
+                        "Angry Puffin Games is the four-man team behind State Your Case: myself, Bjarki Már Aronsson, Haukur Gröndal Bjarnason and Oliver Örn Chelbat Kaaber. We formed for our Computer Science dissertation at Reykjavik University, with Lóa Gunnars as our supervisor, and stuck together well past the deadline.",
+                        "In August 2026 we packed our bags and headed to Cologne to show the game at Gamescom, the biggest videogame event in the world. Through Lóa's connection to the RAW Talent booth, which opened its doors to a few Nordic schools this year, we were among the lucky Reykjavik University teams on the show floor, with Tasty Rook and Síminn backing the trip.",
+                        "Watching complete strangers pick up the game, play it, laugh, argue and genuinely have a good time was one of the best experiences of my professional life. There's something special about spending months building something and then seeing people choose to spend their limited Gamescom hours on it. We're now polishing State Your Case for release on iOS and Android."
+                    }
+                },
+                new
+                {
+                    Slug = "disgruntled_janitors", Name = "Disgruntled Janitors",
+                    Url = (string?)null,
+                    Meta = "The team behind Clean It With Fire",
+                    FallbackImg = (string?)null, FallbackText = (string?)"DJ",
+                    Paragraphs = new[]
+                    {
+                        "Disgruntled Janitors is the crew behind Clean It With Fire: myself, Bernard Geir Línberg Ásgeirsson, Gísli Jóhann Halldórsson and Friðrik Söebech, formed in the Advanced Game Design &amp; Development course at Reykjavik University, with Lóa Gunnars as our teacher.",
+                        "We brought the game to Gamescom in Cologne in August 2026, showing it at the RAW Talent booth alongside the other Reykjavik University teams. Watching players burn their way through alien-overrun spaceships, and catch the little moral story hiding underneath, never got old.",
+                        "The story doesn't end there: we've been having some very interesting conversations about where to take the game next. Co-op multiplayer in the spirit of Lethal Company or PEAK, procedural maps, roguelike progression between runs, all with the goal of releasing it properly. In the meantime the demo is free on itch.io."
+                    }
+                },
+                new
+                {
+                    Slug = "game_makers_iceland", Name = "Game Makers Iceland",
+                    Url = (string?)null,
+                    Meta = "Team Member · Sep 2026 - Present",
+                    FallbackImg = (string?)null, FallbackText = (string?)"GMI",
+                    Paragraphs = new[]
+                    {
+                        "Game Makers Iceland is the grassroots community that has held the Icelandic game-dev scene together for a decade: meetups, events, and a lot of people finding their first team through it. I joined the organizing team in September 2026.",
+                        "My first outing was helping organize the second Reykjavík Game Summit, a full day of talks and connection for the local industry, with international speakers and an even bigger crowd than the year before. Being part of the GMI team and meeting inspiring people who share the passion for this industry made one thing certain: I'm already looking forward to the next one."
+                    }
+                },
+            };
+        }
+        <section class="tab-panel" id="tab-panel-teams" role="tabpanel" aria-labelledby="tab-btn-teams" hidden>
+            <div class="team-list">
+                @foreach (var t in teams)
+                {
+                    var teamSlides = Images.For("teams", t.Slug);
+                    <article class="team-card">
+                        <div class="team-media">
+                            @if (teamSlides.Count > 0)
+                            {
+                                <div class="carousel team-carousel" data-carousel>
+                                    <div class="carousel-track">
+                                        @for (var i = 0; i < teamSlides.Count; i++)
+                                        {
+                                            <div class="carousel-slide">
+                                                <img src="@Url.Content(teamSlides[i])" alt="@t.Name photo @(i + 1)" loading="lazy" />
+                                            </div>
+                                        }
+                                    </div>
+                                    @if (teamSlides.Count > 1)
+                                    {
+                                        <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous image">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                                        </button>
+                                        <button type="button" class="carousel-arrow carousel-next" aria-label="Next image">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                                        </button>
+                                        <div class="carousel-dots">
+                                            @for (var i = 0; i < teamSlides.Count; i++)
+                                            {
+                                                <button type="button" class="carousel-dot" aria-label="Go to image @(i + 1)"></button>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="team-media-fallback">
+                                    @if (t.FallbackImg != null)
+                                    {
+                                        <img src="@Url.Content($"~/images/{t.FallbackImg}")" alt="@t.Name logo" loading="lazy" />
+                                    }
+                                    else
+                                    {
+                                        <span>@t.FallbackText</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div class="team-body">
+                            <h3 class="team-name">
+                                @if (t.Url != null)
+                                {
+                                    <a href="@t.Url" target="_blank" rel="noopener">@t.Name<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                                }
+                                else
+                                {
+                                    @t.Name
+                                }
+                            </h3>
+                            <p class="team-meta">@t.Meta</p>
+                            <div class="team-desc">
+                                @foreach (var p in t.Paragraphs)
+                                {
+                                    <p>@Html.Raw(p)</p>
+                                }
+                            </div>
+                            <button type="button" class="team-toggle" aria-expanded="false" onclick="toggleTeam(this)">
+                                <span class="team-toggle-label">Read the full story</span>
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                        </div>
+                    </article>
+                }
+            </div>
+        </section>
 
     </div>
 
     <!-- ================================================================
          PROJECT DETAIL VIEWS — hidden by default, shown when clicking a card
          ================================================================ -->
+
+    <div id="project-detail-stateyourcase" class="project-detail-section" style="display:none;">
+        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Portfolio
+        </a>
+        <div class="project-detail-wrapper">
+            @await Html.PartialAsync("_StateYourCase")
+        </div>
+    </div>
 
     <div id="project-detail-cleanitwithfire" class="project-detail-section" style="display:none;">
         <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
@@ -206,26 +397,6 @@
         </a>
         <div class="project-detail-wrapper">
             @await Html.PartialAsync("_Nestor")
-        </div>
-    </div>
-
-    <div id="project-detail-kodi" class="project-detail-section" style="display:none;">
-        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            Back to Portfolio
-        </a>
-        <div class="project-detail-wrapper">
-            @await Html.PartialAsync("_Kodi")
-        </div>
-    </div>
-
-    <div id="project-detail-teaching" class="project-detail-section" style="display:none;">
-        <a href="#" onclick="showGrid(); return false;" class="back-to-grid btn-primary btn-sm">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            Back to Portfolio
-        </a>
-        <div class="project-detail-wrapper">
-            @await Html.PartialAsync("_Teaching")
         </div>
     </div>
 

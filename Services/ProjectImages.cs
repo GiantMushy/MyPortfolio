@@ -17,9 +17,12 @@ public class ProjectImages
     public ProjectImages(IWebHostEnvironment env) => _env = env;
 
     /// <summary>All numbered images for a project, ordered, as app-relative (~/) paths.</summary>
-    public IReadOnlyList<string> For(string slug)
+    public IReadOnlyList<string> For(string slug) => For("projects", slug);
+
+    /// <summary>Same numbered-file convention under an arbitrary images/ subfolder (e.g. "teams").</summary>
+    public IReadOnlyList<string> For(string root, string slug)
     {
-        var dir = Path.Combine(_env.WebRootPath, "images", "projects", slug);
+        var dir = Path.Combine(_env.WebRootPath, "images", root, slug);
         if (!Directory.Exists(dir))
             return Array.Empty<string>();
 
@@ -28,7 +31,7 @@ public class ProjectImages
             .Where(x => x.Match.Success)
             .OrderBy(x => int.Parse(x.Match.Groups[1].Value))
             .ThenBy(x => x.Name, StringComparer.OrdinalIgnoreCase)
-            .Select(x => $"~/images/projects/{slug}/{x.Name}")
+            .Select(x => $"~/images/{root}/{slug}/{x.Name}")
             .ToList();
     }
 
@@ -40,9 +43,12 @@ public class ProjectImages
     /// generated first-frame poster (see <see cref="GifPosters"/>); for other images
     /// the still is the image itself.
     /// </summary>
-    public IReadOnlyList<ProjectSlide> Slides(string slug)
+    public IReadOnlyList<ProjectSlide> Slides(string slug) => Slides("projects", slug);
+
+    /// <inheritdoc cref="Slides(string)" />
+    public IReadOnlyList<ProjectSlide> Slides(string root, string slug)
     {
-        return For(slug).Select(src =>
+        return For(root, slug).Select(src =>
         {
             if (!src.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
                 return new ProjectSlide(src, src);

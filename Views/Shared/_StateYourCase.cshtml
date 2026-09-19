@@ -1,0 +1,14 @@
+@* State Your Case project detail *@
+<link rel="stylesheet" href="@Url.Content("~/css/project.css")" />
+<div class="project project-detail">
+    <h2 class="detail-title">State Your Case</h2>
+    <partial name="_ProjectCarousel" model="@("state_your_case")" />
+    <div class="detail-description">
+        <div class="project-text">
+            <p>State Your Case is my Computer Science dissertation project at Reykjavik University, built together with Bjarki Már Aronsson, Haukur Gröndal Bjarnason, and Oliver Örn Chelbat Kaaber, with Lóa Gunnars as our supervisor. We named our team Angry Puffin Games, and we got to show the game at Gamescom 2026.</p>
+            <p>The idea is simple: get people talking, arguing, and most importantly, seeing things from perspectives they might not normally agree with. You're given a funny (and sometimes surprisingly difficult) topic to argue about. But there's a catch: you don't get to choose which side you're arguing for.</p>
+            <p>The goal is to encourage players to step outside their own perspective and build some empathy for opinions they disagree with, while still being genuinely fun to play. We're currently polishing the game, adding more content and finishing animations, getting it ready for release on both iOS and Android. You can follow along at <a href="https://giantmushy.github.io/AngryPuffinGamesSite/" target="_blank" rel="noopener">angrypuffingames</a>.</p>
+        </div>
+    </div>
+    <partial name="_ProjectGallery" model="@("state_your_case")" />
+</div>

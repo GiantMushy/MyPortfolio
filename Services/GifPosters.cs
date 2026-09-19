@@ -14,9 +14,11 @@ public static class GifPosters
 {
     public static void Sync(string webRoot)
     {
-        var projectsRoot = Path.Combine(webRoot, "images", "projects");
+        foreach (var root in new[] { "projects", "teams" })
+        {
+        var projectsRoot = Path.Combine(webRoot, "images", root);
         if (!Directory.Exists(projectsRoot))
-            return;
+            continue;
 
         foreach (var projectDir in Directory.EnumerateDirectories(projectsRoot))
         {
@@ -52,6 +54,7 @@ public static class GifPosters
                     try { File.Delete(orphan); } catch { /* best effort */ }
                 }
             }
+        }
         }
     }
 
