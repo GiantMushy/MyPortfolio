@@ -4,10 +4,11 @@ namespace MyPortfolio.Services;
 
 /// <summary>
 /// Keeps a still "poster" (first frame, saved as PNG) next to every project gif, in a
-/// posters/ subfolder: images/projects/&lt;slug&gt;/posters/&lt;gifname&gt;.png.
-/// Runs at app startup, so posters exist both for local dev and for the GitHub Pages
-/// build (which runs this same app). Posters are generated files — they are gitignored,
-/// and stale ones (renamed/removed gifs) are cleaned up automatically.
+/// posters/ subfolder: images/projects/&lt;slug&gt;/posters/&lt;gifname&gt;.&lt;size&gt;.png.
+/// Runs at app startup. Posters are committed to the repo so the GitHub Pages build
+/// can ship them as plain static files; running the site locally after adding or
+/// renaming gifs refreshes them (stale ones are cleaned up automatically) — then
+/// commit the updated posters folder along with the gifs.
 /// </summary>
 public static class GifPosters
 {

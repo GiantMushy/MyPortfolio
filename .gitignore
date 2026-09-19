@@ -43,9 +43,6 @@ bld/
 # Visual Studio Code
 .vscode/
 
-# Generated gif posters (recreated at app startup — see Services/GifPosters.cs)
-wwwroot/images/projects/*/posters/
-
 # OS generated files
 .DS_Store
 .DS_Store?

@@ -36,7 +36,10 @@ jobs:
           
           # Create output directory
           mkdir -p dist
-
+          
+          # Copy static assets from wwwroot first
+          cp -R wwwroot/* dist/
+          
           # Set environment variables for production
           export ASPNETCORE_ENVIRONMENT=Production
           export ASPNETCORE_URLS="http://localhost:5000"
@@ -84,11 +87,6 @@ jobs:
           echo "🧪 Testing application response..."
           RESPONSE=$(curl -s -w "HTTP_CODE:%{http_code}" http://localhost:5000/)
           echo "Response: $RESPONSE"
-
-          # Copy static assets AFTER the app has started: startup generates
-          # first-frame posters for gifs into wwwroot (see Services/GifPosters.cs),
-          # and those need to ship with the site.
-          cp -R wwwroot/* dist/
           
           # Generate static HTML files
           echo "🔄 Generating static pages..."
