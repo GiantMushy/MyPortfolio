@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Reformat Plan</title>
+<style>
+  :root {
+    --bg: #16202c;
+    --panel: #27374D;
+    --panel-2: #1e2d3f;
+    --line: rgba(157, 178, 191, 0.25);
+    --slate: #526D82;
+    --mist: #9DB2BF;
+    --paper: #DDE6ED;
+    --green: #7fc98f;
+    --amber: #e8c268;
+    --red: #e88a8a;
+    --blue: #8ab6e8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--paper);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    padding: 40px 16px 80px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { margin: 0 0 4px; font-size: 1.9rem; letter-spacing: 0.5px; }
+  .subtitle { color: var(--mist); margin: 0 0 24px; font-size: 0.95rem; }
+
+  .summary-bar {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 28px;
+  }
+  .summary-bar .count { font-weight: 700; font-size: 1.05rem; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-left: auto; font-size: 0.78rem; color: var(--mist); }
+  .legend span::before { content: "●"; margin-right: 5px; }
+  .legend .l-not::before { color: var(--slate); }
+  .legend .l-prog::before { color: var(--amber); }
+  .legend .l-done::before { color: var(--green); }
+  .legend .l-wait::before { color: var(--blue); }
+
+  .context {
+    background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+    font-size: 0.9rem; color: var(--mist);
+  }
+  .context strong { color: var(--paper); }
+
+  .task {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 20px;
+  }
+  .task-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 2px; }
+  .task h2 { margin: 0; font-size: 1.2rem; }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+  .badge {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+    padding: 3px 10px; border-radius: 20px; text-transform: uppercase;
+    border: 1px solid transparent; white-space: nowrap;
+  }
+  .b-status-not     { background: rgba(82,109,130,0.25);  color: var(--mist);  border-color: var(--slate); }
+  .b-status-prog    { background: rgba(232,194,104,0.12); color: var(--amber); border-color: rgba(232,194,104,0.5); }
+  .b-status-done    { background: rgba(127,201,143,0.12); color: var(--green); border-color: rgba(127,201,143,0.5); }
+  .b-status-waiting { background: rgba(138,182,232,0.12); color: var(--blue);  border-color: rgba(138,182,232,0.5); }
+  .b-diff-easy   { background: rgba(127,201,143,0.1); color: var(--green); }
+  .b-diff-medium { background: rgba(232,194,104,0.1); color: var(--amber); }
+  .b-diff-hard   { background: rgba(232,138,138,0.1); color: var(--red); }
+
+  .covers { font-size: 0.78rem; color: var(--mist); margin: 4px 0 12px; }
+  .covers b { color: var(--paper); }
+  .chip {
+    display: inline-block; background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 6px; padding: 1px 8px; margin: 0 3px 3px 0; font-size: 0.75rem; color: var(--paper);
+  }
+
+  .task .summary { margin: 0 0 12px; font-size: 0.95rem; }
+  .task ul { margin: 0 0 6px; padding-left: 20px; font-size: 0.88rem; color: var(--paper); }
+  .task li { margin-bottom: 7px; }
+  .task li::marker { color: var(--slate); }
+  .muted { color: var(--mist); }
+  .note {
+    margin-top: 14px; padding: 10px 14px; border-left: 3px solid var(--slate);
+    background: var(--panel-2); border-radius: 0 8px 8px 0;
+    font-size: 0.83rem; color: var(--mist);
+  }
+  .note strong { color: var(--paper); }
+  .scope-line { font-size: 0.8rem; color: var(--mist); margin-top: 12px; }
+  .scope-line b { color: var(--paper); font-weight: 600; }
+
+  .qcard {
+    background: var(--panel-2); border: 1px dashed rgba(138,182,232,0.45);
+    border-radius: 12px; padding: 18px 22px; margin-bottom: 16px;
+  }
+  .qcard h3 { margin: 0 0 6px; font-size: 0.98rem; color: var(--blue); }
+  .qcard p { margin: 0 0 6px; font-size: 0.88rem; }
+  .qcard .default { font-size: 0.8rem; color: var(--mist); }
+  .qcard .default b { color: var(--paper); }
+
+  h2.section { margin: 40px 0 16px; font-size: 1.25rem; border-bottom: 2px solid var(--line); padding-bottom: 8px; }
+  .order { font-size: 0.92rem; }
+  .order b { color: var(--paper); }
+  .arrow { color: var(--slate); padding: 0 6px; }
+  footer { margin-top: 48px; text-align: center; color: var(--slate); font-size: 0.78rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Portfolio Reformat Plan</h1>
+  <p class="subtitle">giantmushy.github.io/MyPortfolio &mdash; drafted 2026&#8209;09&#8209;19 &middot; statuses update as work lands</p>
+
+  <div class="summary-bar">
+    <span class="count" id="progress-count"></span>
+    <div class="legend">
+      <span class="l-not">Not started</span>
+      <span class="l-prog">In progress</span>
+      <span class="l-done">Done</span>
+      <span class="l-wait">Awaiting answer</span>
+    </div>
+  </div>
+
+  <div class="context">
+    <strong>How the site actually works (30-second version):</strong> the repo is a small web app.
+    Every time you push, GitHub runs it, takes a "photo" of the rendered page, and publishes that
+    snapshot as the static site. This is good news for the plan below — at publish time the app can
+    <em>look inside the image folders itself</em> and lay out projects automatically, which is exactly
+    what makes the "rename a file to reorder it" idea work with zero extra effort per update.
+  </div>
+
+  <div id="tasks"></div>
+
+  <h2 class="section">Recommended order</h2>
+  <p class="order">
+    <b>A. Quick fixes</b><span class="arrow">&rarr;</span>
+    <b>B. Image reorganisation</b><span class="arrow">&rarr;</span>
+    <b>C. Project cards</b><span class="arrow">&rarr;</span>
+    <b>D. Detail view redesign</b>
+  </p>
+  <p class="muted" style="font-size:0.85rem">
+    A is independent and can ship immediately. B is the foundation — both C and D read the
+    numbered image sets it creates, so it goes first. C and D are independent of each other
+    and can be done in either order (or in parallel runs).
+  </p>
+
+  <h2 class="section">UI/UX decisions (answered 2026&#8209;09&#8209;19)</h2>
+  <div id="questions"></div>
+
+  <h2 class="section">Defaults I'll use unless you say otherwise</h2>
+  <div class="context" style="margin-bottom:0">
+    <ul style="margin:0; padding-left:20px; font-size:0.88rem;">
+      <li>Card arrows &amp; detail carousel <b>wrap around</b> (last image &rarr; first).</li>
+      <li>Detail carousel is <b>manual only</b> — no auto-advance.</li>
+      <li>Detail carousel shows small <b>position dots</b> under the image so you know where you are.</li>
+      <li>The play badge on cards is <b>always visible</b> (it advertises "this one's playable"), and clicking it goes straight to itch.io in a new tab without opening the detail view.</li>
+      <li>The "Play here" link at the top of detail descriptions becomes a styled <b>&#9654; Play on itch.io</b> button.</li>
+      <li>Phones/tablets have no hover: cards show the still frame, tapping opens the project. Card arrows and gif playback stay desktop-only; the detail carousel arrows work everywhere.</li>
+      <li>Projects with no images (Teaching, for now) simply skip the carousel and gallery.</li>
+      <li>The hero card shows the full new job title with the Klar Banking link. The tiny byline under "Thor" in the top bar gets a compact version (<b>Junior Developer &amp; Indie Game Dev</b>) if the full line crowds the bar — say the word if you'd rather force the full text there too.</li>
+    </ul>
+  </div>
+
+  <footer>Single-file plan &middot; lives at the repo root (not deployed) &middot; safe to edit statuses in the TASKS list at the top of the file's script</footer>
+</div>
+
+<script>
+// ============================================================
+// STATUS VALUES: "not" | "prog" | "done" | "waiting"
+// Update these as work progresses.
+// ============================================================
+const TASKS = [
+  {
+    id: "A",
+    title: "A. Quick fixes — icons, hero photo, My Journey",
+    status: "done",
+    difficulty: "easy",
+    covers: ["#6 Remove My Journey", "#7 LinkedIn icon", "#8 Discord icon", "#9 Hero image", "NEW: contact links", "NEW: job title"],
+    summary: "A bundle of small, independent fixes done in one pass because they all touch the header/hero/footer area and image assets.",
+    details: [
+      "<b>Remove My Journey (#6):</b> delete the header button, the hidden 'Under Construction' page behind it, and its stylesheet. Nothing else links to it.",
+      "<b>LinkedIn icon (#7):</b> the image file is <b>not corrupted</b> — it's a perfectly good LinkedIn logo. The site recolors every contact icon into a flat gray silhouette (so they all match), and since the LinkedIn logo is a solid filled square, the silhouette of it is… a gray square. Fix: swap in a version that's just the 'in' glyph on a transparent background, so it silhouettes like the other icons.",
+      "<b>Discord icon (#8):</b> exact same root cause — the logo is a solid filled circle, so it silhouettes into a gray blob. Same fix: transparent-background glyph.",
+      "<b>Hero photo (#9):</b> you don't need to re-upload anything. The photo (605&times;780) is squeezed into a 140px circle and browsers do a poor job of that much downscaling, which reads as pixelation. I'll re-crop it square around your face and pre-shrink it to exactly 2&times; display size with proper resampling — crisper and a ~10&times; smaller file. <span class='muted'>(If you ever want it even better, a sharper source photo would help — but that's optional polish.)</span>",
+      "<b>Contact links (new):</b> the LinkedIn rows (hero + footer) become clickable, pointing to <span class='chip'>linkedin.com/in/%C3%BEorvar%C3%B0ur-helgi-b-225365139</span>. The GitHub, LinkedIn and itch.io rows all get a small external-link icon on the right side of their text, opening in a new tab.",
+      "<b>Job title (new):</b> 'aspiring developer' becomes <b>Junior Developer at Klar Banking &amp; Indie Game Dev Hobbyist</b>, with 'Klar Banking' as a clickable link to klarbanking.com (new tab, external-link icon like the others). Updated in the hero card and the small header byline."
+    ],
+    note: "Q3 decided: monochrome silhouette style stays — LinkedIn/Discord get transparent-background glyphs. LinkedIn profile URL supplied 2026-09-19 (recorded in the bullet above)."
+  },
+  {
+    id: "B",
+    title: "B. Image reorganisation & naming convention",
+    status: "done",
+    difficulty: "medium",
+    covers: ["#3 Numbered image names"],
+    summary: "The foundation for everything else: every project gets its own image folder, files renamed to project_name_1, project_name_2, … and the site starts reading those folders automatically.",
+    details: [
+      "Move each project's images into one folder per project, e.g. <span class='chip'>images/projects/clean_it_with_fire/clean_it_with_fire_1.gif</span> <span class='chip'>…_2.png</span> <span class='chip'>…_3.png</span>",
+      "<b>_1 is the headline slot:</b> it's what the project card shows (and if it's a gif, it's the one that plays on hover). The rest follow in numbered order everywhere — card rotation, detail carousel, and gallery.",
+      "At publish time the site scans each folder and builds the ordered image list itself. <b>Renaming files genuinely becomes the only thing you ever do to reorder</b> — no code edits, the next push picks it up.",
+      "Roughly 40 images across 10 projects get renamed/moved (Cult of the Jarls alone has 9, Woodworking 13). Your two new State Your Case gifs and its 5 screenshots get organised into their own folder at the same time, so that project page is trivial to add when you're ready.",
+      "Adding a whole new project afterwards = drop a named folder of numbered images + a short description entry. That's it."
+    ],
+    note: "Landed 2026-09-19. Per Q2, logos (Pygame, OpenGL, Nestor, Kóði) stay out of the numbered sets — they render small inside the description text. A forgotten unused Naascar 2D track screenshot was rescued as naascar_2d_4. Interim quirk until C ships: cards whose #1 is a gif (Clean It With Fire, Fellow Pirates, Cult of the Jarls, both Naascars, Woodworking) animate constantly — C freezes them to their first frame with hover-to-play."
+  },
+  {
+    id: "C",
+    title: "C. Project cards — still gifs, hover-play, arrows, play badge",
+    status: "done",
+    difficulty: "medium",
+    covers: ["#1 Gif still-frame + hover play", "#2 Hover rotate arrows", "#4 Play button"],
+    summary: "All three card behaviours in one pass — they share the same card markup, styling, and script. Depends on B for image ordering.",
+    details: [
+      "<b>Still frame by default (#1):</b> a first-frame poster image is extracted from every gif automatically during publish. Cards show the frozen frame; hovering swaps in the real gif, which plays from the start. Leaving and re-hovering restarts it.",
+      "<b>Rotate arrows (#2):</b> small &lsaquo; &rsaquo; arrows fade in on the card edges on hover and step through the project's numbered images. Clicking an arrow never opens the project — only clicking the card itself does.",
+      "<b>Play badge (#4):</b> projects whose description has a play link get a small &#9654; badge in the card's top-right (mirroring the category icon in the top-left). Clicking it jumps straight to itch.io in a new tab.",
+      "Currently four projects have itch.io links: Clean It With Fire, Fellow Pirates, Cult of the Jarls, and Aseprite (which points at the Cult of the Jarls page) — see question Q4 for which of these should get the badge."
+    ],
+    note: "Landed 2026-09-19. Posters are generated automatically every time the site starts (locally and during deploy) into gitignored posters/ subfolders — renaming or adding gifs needs zero extra work. Phones don't hover: cards show the still frame and a tap opens the project; the play badge still works as a direct link on mobile."
+  },
+  {
+    id: "D",
+    title: "D. Project detail view redesign — title, carousel, description, gallery",
+    status: "done",
+    difficulty: "hard",
+    covers: ["#5 Detail view layout"],
+    summary: "Every project detail page gets the same four-part layout, replacing today's hand-built per-project arrangements. Depends on B for image ordering.",
+    details: [
+      "<b>Title (#5.1):</b> big, bold, centred at the top.",
+      "<b>Carousel (#5.2):</b> full-width edge-to-edge under the title, fixed height. Portrait or odd-shaped images sit letterboxed on a dark backing so the frame never jumps between slides. Left/right arrows; slides physically glide + crossfade rather than snapping.",
+      "<b>Description (#5.3):</b> below the carousel, with the &#9654; play link pinned to the top of the text whenever the project has one.",
+      "<b>Gallery (#5.4):</b> further down, a grid of every image in the project so visitors can see everything at once without tabbing through the carousel.",
+      "This is the biggest visual change on the site — it retires the bespoke layouts (Nestor's side-by-side logo story, Naascar 2D's little collage, Woodworking's paired rows) in favour of one consistent, low-maintenance structure. See question Q1."
+    ],
+    note: "Landed 2026-09-19. Every project now uses one shared carousel + gallery component driven by the numbered image folders, so future projects get the full layout for free. The gallery uses masonry columns so portrait and landscape photos pack without gaps. Single-image projects skip arrows/dots/gallery; Teaching (no images) skips the carousel entirely; play buttons appear on the three playable games."
+  }
+];
+
+const QUESTIONS = [
+  {
+    id: "Q1",
+    title: "Q1 — Flatten all detail pages into the one uniform layout?",
+    body: "The new title &rarr; carousel &rarr; description &rarr; gallery structure replaces each project's current custom text/image arrangement. That means e.g. Nestor's \"I also designed the logo!\" side-panel and Naascar 2D's image collage become part of one plain description block with the images living in the carousel/gallery instead.",
+    def: "&#10003; Decided: <b>fully uniform</b> — every project uses the exact same structure."
+  },
+  {
+    id: "Q2",
+    title: "Q2 — Do logos belong in the image carousels?",
+    body: "Some current 'images' are logos, not screenshots: the Pygame + OpenGL logos on Naascar 2D, the Nestor logo, and the Kóði company logo. In the numbered system they'd appear as carousel/gallery slides like any screenshot.",
+    def: "&#10003; Decided: <b>logos stay out of the carousel</b> — shown small inside the description area; carousels are pure screenshots/gifs."
+  },
+  {
+    id: "Q3",
+    title: "Q3 — Contact icon style: gray silhouettes or brand colors?",
+    body: "All contact icons (email, phone, GitHub, Discord, LinkedIn, itch.io) currently render as uniform gray silhouettes. I can fix LinkedIn/Discord within that style, or switch the whole row to full-color brand logos.",
+    def: "&#10003; Decided: <b>keep the monochrome silhouette style</b> — LinkedIn/Discord get transparent-background glyph versions."
+  },
+  {
+    id: "Q4",
+    title: "Q4 — Which projects get the play badge?",
+    body: "Clean It With Fire, Fellow Pirates and Cult of the Jarls are genuinely playable. Aseprite's link points to the Cult of the Jarls itch page ('check out its current state') — it's more 'related art' than 'play this'.",
+    def: "&#10003; Decided: <b>badge only the three actual games</b> (Clean It With Fire, Fellow Pirates, Cult of the Jarls); Aseprite's link stays normal text."
+  }
+];
+
+// ---------- render ----------
+const STATUS_LABEL = { not: "Not started", prog: "In progress", done: "Done", waiting: "Awaiting answer" };
+const DIFF_LABEL = { easy: "Easy", medium: "Medium", hard: "Harder" };
+
+const tasksEl = document.getElementById("tasks");
+TASKS.forEach(t => {
+  const el = document.createElement("div");
+  el.className = "task";
+  el.innerHTML = `
+    <div class="task-head">
+      <h2>${t.title}</h2>
+      <div class="badges">
+        <span class="badge b-diff-${t.difficulty}">${DIFF_LABEL[t.difficulty]}</span>
+        <span class="badge b-status-${t.status}">${STATUS_LABEL[t.status]}</span>
+      </div>
+    </div>
+    <div class="covers"><b>Covers:</b> ${t.covers.map(c => `<span class="chip">${c}</span>`).join("")}</div>
+    <p class="summary">${t.summary}</p>
+    <ul>${t.details.map(d => `<li>${d}</li>`).join("")}</ul>
+    ${t.note ? `<div class="note"><strong>Note:</strong> ${t.note}</div>` : ""}
+  `;
+  tasksEl.appendChild(el);
+});
+
+const qEl = document.getElementById("questions");
+QUESTIONS.forEach(q => {
+  const el = document.createElement("div");
+  el.className = "qcard";
+  el.innerHTML = `<h3>${q.title}</h3><p>${q.body}</p><p class="default">${q.def}</p>`;
+  qEl.appendChild(el);
+});
+
+const done = TASKS.filter(t => t.status === "done").length;
+document.getElementById("progress-count").textContent = `${done} of ${TASKS.length} task groups done`;
+</script>
+</body>
+</html>

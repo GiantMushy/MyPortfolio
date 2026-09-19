@@ -17,23 +17,8 @@
     <div id="main-body">
         <partial name="Body" />
     </div>
-    <div id="journey-body" style="display: none;">
-        <partial name="MyJourneyBody" />
-        <partial name="Footer" />
-    </div>
-    
-    <script>
-        // ===== Page View Toggle =====
-        function showMyJourney() {
-            document.getElementById('main-body').style.display = 'none';
-            document.getElementById('journey-body').style.display = 'block';
-        }
-        
-        function showHome() {
-            document.getElementById('main-body').style.display = 'block';
-            document.getElementById('journey-body').style.display = 'none';
-        }
 
+    <script>
         // ===== Project Detail Navigation =====
         function showProject(id) {
             document.getElementById('portfolio-view').style.display = 'none';
@@ -56,5 +41,7 @@
             window.scrollTo(0, 0);
         }
     </script>
+    <script src="@Url.Content("~/js/project-cards.js")"></script>
+    <script src="@Url.Content("~/js/carousel.js")"></script>
 </body>
 </html>

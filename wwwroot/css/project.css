@@ -1,14 +1,7 @@
-/* ===== Project Card Styles ===== */
-
-h3, h3.project-title {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #27374D;
-  margin: 0 0 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid rgba(157, 178, 191, 0.6);
-  display: inline-block;
-}
+/* ===== Project Detail Styles =====
+   Uniform layout for every project: centered title, full-width carousel,
+   description (play button pinned on top when the project is playable),
+   then a gallery of every image. */
 
 .project {
   background: rgba(157, 178, 191, 0.15);
@@ -21,38 +14,134 @@ h3, h3.project-title {
   box-shadow: 0 4px 24px rgba(39, 55, 77, 0.08);
 }
 
-/* Two-column grid for text + image */
-.project-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  align-items: start;
-  margin-bottom: 16px;
+/* ----- Title ----- */
+.detail-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #27374D;
+  text-align: center;
+  margin: 4px 0 20px;
 }
 
-/* Image gallery rows */
-.project-gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 16px;
+/* ----- Carousel ----- */
+/* Bleeds edge-to-edge out of the .project padding; images are letterboxed
+   on a dark backing so the frame never changes size between slides. */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  background: #1e2d3f;
+  margin: 0 -28px 28px;
+  height: clamp(260px, 48vw, 460px);
 }
 
-.project-gallery.gallery-three {
-  grid-template-columns: 1fr 1fr 1fr;
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Project images */
-.project-display-img {
-  width: 100%;
-  border: 1px solid rgba(39, 55, 77, 0.15);
-  border-radius: 8px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: default;
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  transition: opacity 0.45s ease;
 }
-.project-display-img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(39, 55, 77, 0.8);
+  color: #DDE6ED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.carousel-prev { left: 14px; }
+.carousel-next { right: 14px; }
+.carousel-arrow:hover {
+  background: rgba(39, 55, 77, 1);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 2;
+}
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(221, 230, 237, 0.35);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.carousel-dot:hover {
+  background: rgba(221, 230, 237, 0.7);
+}
+.carousel-dot.active {
+  background: #DDE6ED;
+  transform: scale(1.25);
+}
+
+/* ----- Description ----- */
+.detail-description {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.detail-description .project-text {
+  text-align: left;
+}
+
+/* Friendly pill play button, always at the top of the description */
+.detail-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 26px;
+  margin-bottom: 22px;
+  border-radius: 26px;
+  background: #27374D;
+  color: #DDE6ED;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(39, 55, 77, 0.3);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.detail-play-btn:hover {
+  background: #334964;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(39, 55, 77, 0.35);
 }
 
 /* Project text */
@@ -76,57 +165,54 @@ h3, h3.project-title {
   text-decoration-color: #27374D;
 }
 
-/* Solo centered layouts */
-.solo-image {
-  width: 80%;
-  margin: 0 auto 24px;
+/* Small brand/tech logos shown inside the description area (kept out of galleries) */
+.project-logos {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+.project-logos img {
+  height: 48px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+/* ----- Gallery: every image in one place, below the description -----
+   Masonry-style columns so mixed portrait/landscape photos pack without gaps. */
+.detail-gallery {
+  columns: 3;
+  column-gap: 14px;
+  margin-top: 40px;
+}
+.detail-gallery .project-display-img {
   display: block;
+  margin-bottom: 14px;
+  break-inside: avoid;
 }
 
-.solo-txt {
-  width: 75%;
-  margin: 0 auto 24px;
+.project-display-img {
+  width: 100%;
+  border: 1px solid rgba(39, 55, 77, 0.15);
+  border-radius: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
 }
-
-/* ----- Specific project layouts ----- */
-.carGame2d-images-display {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  position: relative;
-  height: 100%;
+.project-display-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
-.carGame2d-images-display img:nth-child(1) {
-  grid-column: 1; grid-row: 1;
-  width: 110%; align-self: start; justify-self: start;
-}
-.carGame2d-images-display img:nth-child(2) {
-  grid-column: 1 / 3; grid-row: 1 / 3;
-  width: 60%; align-self: end; justify-self: end;
-  margin-top: -50px;
-}
-.carGame2d-images-display img:nth-child(3) {
-  grid-column: 2; grid-row: 1;
-  width: 30%; align-self: start; justify-self: end;
-  border: none;
-}
-.carGame2d-images-display img:nth-child(4) {
-  grid-column: 2; grid-row: 1;
-  width: 40%; align-self: center; justify-self: center;
-  margin-top: 50px; border: none;
-}
-
-#nestor-logo-and-text { margin-top: 10%; height: 100%; }
-.nestor-logo { margin-top: 10%; border: none; width: 50%; }
-#project-kodi { grid-template-columns: 1fr 3fr; }
 
 /* ----- Responsive ----- */
 @media (max-width: 768px) {
   .project { padding: 18px; }
-  .project-grid { grid-template-columns: 1fr; }
-  .project-gallery { grid-template-columns: 1fr; }
-  .project-gallery.gallery-three { grid-template-columns: 1fr 1fr; }
-  .solo-image { width: 100%; }
-  .solo-txt { width: 100%; }
-  #project-kodi { grid-template-columns: 1fr; }
+  .detail-title { font-size: 1.5rem; }
+  .carousel { margin: 0 -18px 22px; }
+  .carousel-arrow { width: 34px; height: 34px; }
+  .detail-gallery { columns: 2; }
+}
+
+@media (max-width: 520px) {
+  .detail-gallery { columns: 1; }
 }

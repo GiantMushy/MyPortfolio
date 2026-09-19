@@ -1,4 +1,5 @@
 @* Body partial - Hero Card + Project Thumbnail Grid (Single Page) *@
+@inject ProjectImages Images
 <link rel="stylesheet" href="@Url.Content("~/css/body.css")" />
 <link rel="stylesheet" href="@Url.Content("~/css/project.css")" />
 
@@ -14,7 +15,7 @@
             <img class="hero-avatar" src="@Url.Content("~/images/profile.png")" alt="Þorvarður Helgi Bjarnason" />
             <div class="hero-info">
                 <h1 class="hero-name">Þorvarður Helgi Bjarnason</h1>
-                <p class="hero-title">aspiring developer</p>
+                <p class="hero-title">Junior Developer at <a href="https://www.klarbanking.com/" target="_blank" rel="noopener">Klar Banking<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a> &amp; Indie Game Dev Hobbyist</p>
                 <div class="hero-contacts">
                     <div class="hero-contact-row">
                         <img src="@Url.Content("~/images/personal_email.png")" alt="Email" />
@@ -29,20 +30,20 @@
                         <span>(⁺354) 772-2112</span>
                     </div>
                     <div class="hero-contact-row">
-                        <img src="@Url.Content("~/images/discord.png")" alt="Discord" />
+                        <img src="@Url.Content("~/images/discord.svg")" alt="Discord" />
                         <span>giant_mushroom</span>
                     </div>
                     <div class="hero-contact-row">
                         <img src="@Url.Content("~/images/github.png")" alt="GitHub" />
-                        <a href="https://github.com/GiantMushy" target="_blank">github.com/GiantMushy</a>
+                        <a href="https://github.com/GiantMushy" target="_blank" rel="noopener">github.com/GiantMushy<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
                     </div>
                     <div class="hero-contact-row">
                         <img src="@Url.Content("~/images/unity-selected.png")" alt="itch.io" />
-                        <a href="https://giantmushy.itch.io/" target="_blank">giantmushy.itch.io</a>
+                        <a href="https://giantmushy.itch.io/" target="_blank" rel="noopener">giantmushy.itch.io<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
                     </div>
                     <div class="hero-contact-row">
-                        <img src="@Url.Content("~/images/linkedin.png")" alt="LinkedIn" />
-                        <span>Þorvarður Helgi Bjarnason</span>
+                        <img src="@Url.Content("~/images/linkedin.svg")" alt="LinkedIn" />
+                        <a href="https://www.linkedin.com/in/%C3%BEorvar%C3%B0ur-helgi-b-225365139/" target="_blank" rel="noopener">Þorvarður Helgi Bjarnason<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -50,88 +51,76 @@
 
         <!-- ===================================================================
              PROJECT THUMBNAILS
-             To change a thumbnail image, edit the src attribute on the
-             <img class="card-thumbnail"> element for that project.
+             Each card shows the STILL of image #1 from wwwroot/images/projects/<slug>/
+             (gifs play on hover; posters are generated automatically at startup).
+             Rename the numbered files in that folder to change order everywhere.
              =================================================================== -->
+        @{
+            var cards = new[]
+            {
+                new { Id = "cleanitwithfire", Slug = "clean_it_with_fire", Title = "Clean It With Fire", Icon = "unity-selected.png",       IconAlt = "Unity",       Play = "https://giantmushy.itch.io/clean-it-with-fire",  Time = "3 weeks" },
+                new { Id = "fellowpirates",   Slug = "fellow_pirates",     Title = "Fellow Pirates",     Icon = "unity-selected.png",       IconAlt = "Unity",       Play = "https://evarut.itch.io/fellow-pirates",          Time = "2 weeks" },
+                new { Id = "cultofthejarls",  Slug = "cult_of_the_jarls",  Title = "Cult of the Jarls",  Icon = "unity-selected.png",       IconAlt = "Unity",       Play = "https://giantmushy.itch.io/guns-gods-galleons",  Time = "2 weeks" },
+                new { Id = "aseprite",        Slug = "aseprite",           Title = "Aseprite",           Icon = "unity-selected.png",       IconAlt = "Unity",       Play = (string?)null,                                    Time = (string?)null },
+                new { Id = "nanair",          Slug = "nanair",             Title = "NanAir",             Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = "3 weeks" },
+                new { Id = "cargame2d",       Slug = "naascar_2d",         Title = "Naascar 2D",         Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = "2 weeks" },
+                new { Id = "cargame3d",       Slug = "naascar_3d",         Title = "Naascar 3D",         Icon = "python-selected.png",      IconAlt = "Python",      Play = (string?)null,                                    Time = "3 weeks" },
+                new { Id = "nestor",          Slug = "nestor",             Title = "Nestor",             Icon = "web-selected.png",         IconAlt = "Web",         Play = (string?)null,                                    Time = "3 weeks" },
+                new { Id = "kodi",            Slug = "hluthafaskra",       Title = "Hluthafaskrá",       Icon = "web-selected.png",         IconAlt = "Web",         Play = (string?)null,                                    Time = "5 months" },
+                new { Id = "teaching",        Slug = "teaching",           Title = "Teaching",           Icon = "teaching-selected.png",    IconAlt = "Teaching",    Play = (string?)null,                                    Time = (string?)null },
+                new { Id = "woodworking",     Slug = "woodworking",        Title = "Woodworking",        Icon = "woodworking-selected.png", IconAlt = "Woodworking", Play = (string?)null,                                    Time = (string?)null },
+            };
+        }
         <section class="thumbnail-grid">
+            @foreach (var c in cards)
+            {
+                var slides = Images.Slides(c.Slug);
+                // Relative (no leading slash) URLs so the JSON survives the GitHub Pages path rewrite.
+                var slidesJson = System.Text.Json.JsonSerializer.Serialize(
+                    slides.Select(s => new { src = Url.Content(s.Src)!.TrimStart('/'), still = Url.Content(s.Still)!.TrimStart('/') }));
 
-            <!-- ===== THUMBNAIL: Clean It With Fire ===== -->
-            <a href="#" onclick="showProject('cleanitwithfire'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/CleanItWithFire-viscera.png")" alt="Clean It With Fire" />
-                <span class="card-title">Clean It With Fire</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Fellow Pirates ===== -->
-            <a href="#" onclick="showProject('fellowpirates'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/FellowPirates.png")" alt="Fellow Pirates" />
-                <span class="card-title">Fellow Pirates</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Cult of the Jarls ===== -->
-            <a href="#" onclick="showProject('cultofthejarls'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/TLJ-bigPicture.png")" alt="Cult of the Jarls" />
-                <span class="card-title">Cult of the Jarls</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Aseprite ===== -->
-            <a href="#" onclick="showProject('aseprite'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/unity-selected.png")" alt="Unity" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/aseprite-jarls.png")" alt="Aseprite" />
-                <span class="card-title">Aseprite</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: NanAir ===== -->
-            <a href="#" onclick="showProject('nanair'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/NanAir.png")" alt="NanAir" />
-                <span class="card-title">NanAir</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Naascar 2D ===== -->
-            <a href="#" onclick="showProject('cargame2d'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_2D.gif")" alt="Naascar 2D" />
-                <span class="card-title">Naascar 2D</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Naascar 3D ===== -->
-            <a href="#" onclick="showProject('cargame3d'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/python-selected.png")" alt="Python" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/gifs/CarGame_3D.gif")" alt="Naascar 3D" />
-                <span class="card-title">Naascar 3D</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Nestor ===== -->
-            <a href="#" onclick="showProject('nestor'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/Nestor-frontPage.png")" alt="Nestor" />
-                <span class="card-title">Nestor</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Hluthafaskrá (Kóði) ===== -->
-            <a href="#" onclick="showProject('kodi'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/web-selected.png")" alt="Web" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/Hluthafaskra-forntPage.png")" alt="Hluthafaskrá" />
-                <span class="card-title">Hluthafaskrá</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Teaching ===== -->
-            <a href="#" onclick="showProject('teaching'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
-                <img class="card-thumbnail card-thumbnail-icon" src="@Url.Content("~/images/teaching-selected.png")" alt="Teaching" />
-                <span class="card-title">Teaching</span>
-            </a>
-
-            <!-- ===== THUMBNAIL: Woodworking ===== -->
-            <a href="#" onclick="showProject('woodworking'); return false;" class="project-card">
-                <img class="card-category-icon" src="@Url.Content("~/images/woodworking-selected.png")" alt="Woodworking" />
-                <img class="card-thumbnail" src="@Url.Content("~/images/projects/Construction/Table.png")" alt="Woodworking" />
-                <span class="card-title">Woodworking</span>
-            </a>
-
+                <div class="project-card" role="button" tabindex="0"
+                     onclick="showProject('@c.Id');"
+                     onkeydown="if (event.key === 'Enter') showProject('@c.Id');"
+                     @(slides.Count > 0 ? Html.Raw($"data-slides=\"{Html.Encode(slidesJson)}\"") : Html.Raw(""))>
+                    <img class="card-category-icon" src="@Url.Content($"~/images/{c.Icon}")" alt="@c.IconAlt" />
+                    @if (c.Play != null)
+                    {
+                        <a class="card-play-badge" href="@c.Play" target="_blank" rel="noopener"
+                           title="Play on itch.io" aria-label="Play @c.Title on itch.io"
+                           onclick="event.stopPropagation();">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" aria-hidden="true"><path d="M9 7v10l8.5-5z"/></svg>
+                        </a>
+                    }
+                    @if (c.Time != null)
+                    {
+                        <span class="card-time-badge" title="Development time">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="8"/><line x1="12" y1="14" x2="12" y2="10"/><line x1="9" y1="2" x2="15" y2="2"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                            @c.Time
+                        </span>
+                    }
+                    <div class="card-media">
+                        @if (slides.Count > 0)
+                        {
+                            <img class="card-thumbnail" src="@Url.Content(slides[0].Still)" alt="@c.Title" />
+                        }
+                        else
+                        {
+                            <img class="card-thumbnail card-thumbnail-icon" src="@Url.Content($"~/images/{c.Icon}")" alt="@c.Title" />
+                        }
+                        @if (slides.Count > 1)
+                        {
+                            <button type="button" class="card-arrow card-arrow-prev" aria-label="Previous image">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                            </button>
+                            <button type="button" class="card-arrow card-arrow-next" aria-label="Next image">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        }
+                    </div>
+                    <span class="card-title">@c.Title</span>
+                </div>
+            }
         </section>
 
     </div>

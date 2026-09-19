@@ -1,0 +1,14 @@
+@* Shared all-images gallery for project detail views. Model = project slug.
+   Shows every numbered image at once, below the description. *@
+@model string
+@inject ProjectImages Images
+@{ var imgs = Images.For(Model); }
+@if (imgs.Count > 1)
+{
+    <div class="detail-gallery">
+        @for (var i = 0; i < imgs.Count; i++)
+        {
+            <img class="project-display-img" src="@Url.Content(imgs[i])" alt="Screenshot @(i + 1)" loading="lazy" />
+        }
+    </div>
+}

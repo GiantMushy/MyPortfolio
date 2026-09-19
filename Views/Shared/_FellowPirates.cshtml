@@ -1,16 +1,16 @@
-@* Fellow Pirates project partial *@
-<div class="project">
-    <h3 class="project-title">Fellow Pirates</h3>
-    <div class="project-grid">
-        <img class="project-display-img" src="@Url.Content("~/images/projects/FellowPirates.png")" alt="Fellow Pirates gameplay"> 
+@* Fellow Pirates project detail *@
+<link rel="stylesheet" href="@Url.Content("~/css/project.css")" />
+<div class="project project-detail">
+    <h2 class="detail-title">Fellow Pirates</h2>
+    <partial name="_ProjectCarousel" model="@("fellow_pirates")" />
+    <div class="detail-description">
+        <a class="detail-play-btn" href="https://evarut.itch.io/fellow-pirates" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" aria-hidden="true"><path d="M9 7v10l8.5-5z"/></svg>
+            Play on itch.io
+        </a>
         <div class="project-text">
             <p>Fellow Pirates was my first introduction to the Unity game engine. This project was developed in collaboration with 3 other students over the course of 3 weeks for a videogame design course I took in December 2025. I largely managed the project, and designed both the structure of the codebase, and the layout of the overworld in the game.</p>
-            <br>
-            <p>You can check it out on <a href="https://evarut.itch.io/fellow-pirates" target="_blank">evarut.itch.io/fellow-pirates</a></p>
         </div>
     </div>
-    <div class="project-gallery">
-        <img class="project-display-img" src="@Url.Content("~/images/projects/FP-VictoryScreen.png")" alt="Fellow Pirates victory screen">
-        <img class="project-display-img" src="@Url.Content("~/images/projects/FP_Blackbeard.gif")" alt="Fellow Pirates Blackbeard">
-    </div>
+    <partial name="_ProjectGallery" model="@("fellow_pirates")" />
 </div>

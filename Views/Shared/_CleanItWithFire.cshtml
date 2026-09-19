@@ -1,20 +1,18 @@
-@* Clean It With Fire project partial *@
+@* Clean It With Fire project detail *@
 <link rel="stylesheet" href="@Url.Content("~/css/project.css")" />
-<div class="project">
-    <h3 class="project-title">Clean It With Fire</h3>
-    <div class="project-grid">
-        <img class="project-display-img" src="@Url.Content("~/images/gifs/CleanItWithFire-Gameplay.gif")" alt="Clean It With Fire gameplay">
+<div class="project project-detail">
+    <h2 class="detail-title">Clean It With Fire</h2>
+    <partial name="_ProjectCarousel" model="@("clean_it_with_fire")" />
+    <div class="detail-description">
+        <a class="detail-play-btn" href="https://giantmushy.itch.io/clean-it-with-fire" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" aria-hidden="true"><path d="M9 7v10l8.5-5z"/></svg>
+            Play on itch.io
+        </a>
         <div class="project-text">
             <p>Clean It With Fire was a group project I developed with 3 other students in our Advanced Game Design and Development course in Unity. This was hands down one of the best collaborative experiences I've ever had — the team was incredible, and we built something we're all genuinely proud of. The game received raving reviews from both our peers and instructors, and we're excited to continue developing it further over the summer.</p>
             <br>
             <p>The synergy within the team was unlike anything I'd experienced before. Everyone brought something unique to the table, and it showed in the final product. We pushed each other to deliver something polished, fun, and memorable.</p>
-            <br>
-            <p><strong>Play it now on itch.io:</strong></p>
-            <p><a href="https://giantmushy.itch.io/clean-it-with-fire" target="_blank">🔥 giantmushy.itch.io/clean-it-with-fire 🔥</a></p>
         </div>
     </div>
-    <div class="project-gallery">
-        <img class="project-display-img" src="@Url.Content("~/images/projects/CleanItWithFire-Mantis.png")" alt="Clean It With Fire - Mantis">
-        <img class="project-display-img" src="@Url.Content("~/images/projects/CleanItWithFire-viscera.png")" alt="Clean It With Fire - Viscera">
-    </div>
+    <partial name="_ProjectGallery" model="@("clean_it_with_fire")" />
 </div>

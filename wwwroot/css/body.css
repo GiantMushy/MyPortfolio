@@ -49,6 +49,18 @@
   margin: 0 0 20px;
 }
 
+.hero-title a {
+  color: #DDE6ED;
+  text-decoration: underline;
+  text-decoration-color: rgba(157, 178, 191, 0.5);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.hero-title a:hover {
+  color: #fff;
+  text-decoration-color: #DDE6ED;
+}
+
 .hero-contacts {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -127,12 +139,115 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Play badge in top-right (projects with a playable build) */
+/* Same container as .card-category-icon (28px square, 6px radius, 4px padding),
+   sitting directly to its right in the top-left corner */
+.card-play-badge {
+  position: absolute;
+  top: 10px;
+  left: 44px; /* 10px edge + 28px category icon + 6px gap */
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(39, 55, 77, 0.85);
+  color: #DDE6ED;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.card-play-badge svg {
+  width: 100%;
+  height: 100%;
+  margin-left: 1px; /* optically center the triangle */
+}
+.card-play-badge:hover {
+  background: #DDE6ED;
+  color: #27374D;
+  transform: scale(1.1);
+}
+
+/* Development-time badge in top-right: light translucent pill with dark text */
+.card-time-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px;
+  background: rgba(221, 230, 237, 0.85);
+  color: #27374D;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.card-time-badge svg {
+  flex-shrink: 0;
+}
+
+/* While a gif is playing, the badge steps back to keep focus on the gameplay */
+.project-card.card-playing .card-time-badge {
+  background: rgba(221, 230, 237, 0.22);
+  box-shadow: none;
+}
+
+/* Media area wraps the thumbnail so arrows center on the image, not the card */
+.card-media {
+  position: relative;
+  line-height: 0;
+}
+
 /* Thumbnail image */
 .card-thumbnail {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-bottom: 1px solid rgba(157, 178, 191, 0.25);
+}
+
+/* Hover arrows for cycling a card's images */
+.card-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(39, 55, 77, 0.7);
+  color: #DDE6ED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+.card-arrow-prev { left: 8px; }
+.card-arrow-next { right: 8px; }
+.project-card:hover .card-arrow,
+.card-arrow:focus-visible {
+  opacity: 1;
+}
+.card-arrow:hover {
+  background: rgba(39, 55, 77, 0.95);
 }
 
 /* For projects with no real thumbnail (e.g. Teaching) - icon as placeholder */

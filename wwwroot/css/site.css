@@ -142,16 +142,18 @@ body {
     overflow-y: auto;
 }
 
-/* Journey view scrolls vertically */
-#journey-body {
-    flex: 1;
-    overflow-y: auto;
+/* External-link indicator on outbound contact links */
+.ext-icon {
+    width: 11px;
+    height: 11px;
+    margin-left: 5px;
+    vertical-align: -1px;
+    opacity: 0.65;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
 }
-
-/* Dim tabs when in journey view */
-.tabs-dimmed {
-    opacity: 0.3;
-    pointer-events: none;
+a:hover .ext-icon {
+    opacity: 1;
 }
 
 /* Header, Footer, and Body-specific styles have been split into header.css, footer.css, and body.css */
